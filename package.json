@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "eslint",
     "predeploy": "pnpm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d out"
   },
   "dependencies": {
     "next": "16.0.4",
