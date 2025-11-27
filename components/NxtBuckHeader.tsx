@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 const navLinks = [
@@ -11,8 +10,8 @@ export default function NxtBuckHeader() {
   return (
     <header className="flex items-center justify-between px-8 py-4">
       <Link href="/" className="flex items-center gap-3">
-        <Image
-          src="/logo.png"
+        <img
+          src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/logo.png`}
           alt="NxtBuck Logo"
           width={48}
           height={48}
