@@ -27,6 +27,7 @@ export default function ContactUs() {
     email: "",
     phone: "",
     business: "",
+    budget: "",
     message: "",
   });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -46,13 +47,14 @@ export default function ContactUs() {
           email: formData.email,
           phone: formData.phone,
           business: formData.business,
+          budget: formData.budget,
           message: formData.message,
         }),
       });
 
       if (response.ok) {
         setStatus("sent");
-        setFormData({ name: "", email: "", phone: "", business: "", message: "" });
+        setFormData({ name: "", email: "", phone: "", business: "", budget: "", message: "" });
       } else {
         setStatus("error");
       }
@@ -201,31 +203,58 @@ export default function ContactUs() {
                     />
                   </div>
 
-                  <div>
-                    <label htmlFor="business" className="block text-white text-sm font-medium mb-2">
-                      Business Type
-                    </label>
-                    <select
-                      id="business"
-                      value={formData.business}
-                      onChange={(e) => setFormData({ ...formData, business: e.target.value })}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white focus:outline-none focus:border-[#FF4081] transition-colors text-sm appearance-none"
-                      style={{
-                        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
-                        backgroundRepeat: "no-repeat",
-                        backgroundPosition: "right 12px center",
-                        backgroundSize: "20px",
-                      }}
-                    >
-                      <option value="" className="bg-[#1a1a2e]">Select your industry</option>
-                      <option value="contractor" className="bg-[#1a1a2e]">Contractor / Trades</option>
-                      <option value="dental" className="bg-[#1a1a2e]">Dental / Healthcare</option>
-                      <option value="legal" className="bg-[#1a1a2e]">Law Firm / Legal</option>
-                      <option value="realestate" className="bg-[#1a1a2e]">Real Estate</option>
-                      <option value="hvac" className="bg-[#1a1a2e]">HVAC / Home Services</option>
-                      <option value="consulting" className="bg-[#1a1a2e]">Consulting</option>
-                      <option value="other" className="bg-[#1a1a2e]">Other</option>
-                    </select>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="business" className="block text-white text-sm font-medium mb-2">
+                        Business Type
+                      </label>
+                      <select
+                        id="business"
+                        value={formData.business}
+                        onChange={(e) => setFormData({ ...formData, business: e.target.value })}
+                        className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white focus:outline-none focus:border-[#FF4081] transition-colors text-sm appearance-none"
+                        style={{
+                          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
+                          backgroundRepeat: "no-repeat",
+                          backgroundPosition: "right 12px center",
+                          backgroundSize: "20px",
+                        }}
+                      >
+                        <option value="" className="bg-[#1a1a2e]">Select your industry</option>
+                        <option value="contractor" className="bg-[#1a1a2e]">Contractor / Trades</option>
+                        <option value="dental" className="bg-[#1a1a2e]">Dental / Healthcare</option>
+                        <option value="legal" className="bg-[#1a1a2e]">Law Firm / Legal</option>
+                        <option value="realestate" className="bg-[#1a1a2e]">Real Estate</option>
+                        <option value="hvac" className="bg-[#1a1a2e]">HVAC / Home Services</option>
+                        <option value="consulting" className="bg-[#1a1a2e]">Consulting</option>
+                        <option value="other" className="bg-[#1a1a2e]">Other</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label htmlFor="budget" className="block text-white text-sm font-medium mb-2">
+                        Budget Range
+                      </label>
+                      <select
+                        id="budget"
+                        value={formData.budget}
+                        onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+                        className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white focus:outline-none focus:border-[#FF4081] transition-colors text-sm appearance-none"
+                        style={{
+                          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
+                          backgroundRepeat: "no-repeat",
+                          backgroundPosition: "right 12px center",
+                          backgroundSize: "20px",
+                        }}
+                      >
+                        <option value="" className="bg-[#1a1a2e]">Select budget (optional)</option>
+                        <option value="under-2500" className="bg-[#1a1a2e]">Under $2,500</option>
+                        <option value="2500-5000" className="bg-[#1a1a2e]">$2,500 - $5,000</option>
+                        <option value="5000-10000" className="bg-[#1a1a2e]">$5,000 - $10,000</option>
+                        <option value="10000-plus" className="bg-[#1a1a2e]">$10,000+</option>
+                        <option value="monthly" className="bg-[#1a1a2e]">Monthly retainer</option>
+                        <option value="not-sure" className="bg-[#1a1a2e]">Not sure yet</option>
+                      </select>
+                    </div>
                   </div>
 
                   <div>
