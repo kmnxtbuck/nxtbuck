@@ -10,7 +10,7 @@ const packages = [
     subtitle: "Entry-Level",
     price: "$2,500-$3,500",
     priceType: "one-time",
-    target: "Small service businesses, local trades, consultants, early founders",
+    target: "Toronto small businesses, GTA contractors, local trades, consultants",
     promise:
       "A premium small-business website built to convert visitors into leads.",
     features: [
@@ -32,7 +32,7 @@ const packages = [
     subtitle: "Core Package",
     price: "$6,000-$8,500",
     priceType: "one-time",
-    target: "Growing businesses ready to scale their online presence",
+    target: "Growing Ontario businesses ready to scale their online presence",
     promise:
       "A complete revenue engine (not just a website) that converts, follows up, and books calls for you.",
     features: [
@@ -58,7 +58,7 @@ const packages = [
     priceType: "/month",
     setupFee: "$3,000 setup fee - 12-month contract",
     target:
-      "Businesses ready to scale, realtors, home services, local franchises, high-ticket service companies",
+      "Toronto realtors, GTA home services, Ontario franchises, high-ticket service companies",
     promise:
       "We don't just build your website (we run it like a revenue-producing machine).",
     features: [
@@ -149,7 +149,7 @@ export default function OurProducts() {
 
           <p className="text-base sm:text-lg md:text-xl text-white/60 max-w-2xl mx-auto leading-relaxed px-4">
             Choose the package that matches your ambition. Every solution is
-            built to convert visitors into customers.
+            built to convert Toronto and Ontario visitors into loyal customers.
           </p>
         </div>
 
@@ -298,8 +298,8 @@ export default function OurProducts() {
               Not sure which package is right for you?
             </h2>
             <p className="text-white/60 text-base sm:text-lg mb-6 sm:mb-8 md:mb-10 leading-relaxed">
-              Book a free 30-minute strategy call. We'll analyze your current
-              situation and recommend the perfect solution for your business
+              Book a free 30-minute strategy call with our Toronto team. We'll analyze your current
+              situation and recommend the perfect solution for your Ontario business
               goals.
             </p>
             <Link

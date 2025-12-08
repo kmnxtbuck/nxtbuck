@@ -1,13 +1,32 @@
 "use client";
 
-import type { Metadata } from "next";
 import { useState, FormEvent } from "react";
+import Link from "next/link";
+
+function ArrowIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={2}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M17 8l4 4m0 0l-4 4m4-4H3"
+      />
+    </svg>
+  );
+}
 
 export default function ContactUs() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    subject: "",
+    phone: "",
+    business: "",
     message: "",
   });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -17,7 +36,6 @@ export default function ContactUs() {
     setStatus("sending");
 
     try {
-      // TODO: Replace YOUR_FORM_ID with your Formspree form ID from https://formspree.io
       const response = await fetch("https://formspree.io/f/mkgljode", {
         method: "POST",
         headers: {
@@ -26,14 +44,15 @@ export default function ContactUs() {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          subject: formData.subject,
+          phone: formData.phone,
+          business: formData.business,
           message: formData.message,
         }),
       });
 
       if (response.ok) {
         setStatus("sent");
-        setFormData({ name: "", email: "", subject: "", message: "" });
+        setFormData({ name: "", email: "", phone: "", business: "", message: "" });
       } else {
         setStatus("error");
       }
@@ -43,106 +62,222 @@ export default function ContactUs() {
   };
 
   return (
-    <main className="max-w-2xl mx-auto px-6 py-12">
-      <h1 className="text-4xl font-bold text-white mb-4">Contact Us</h1>
-      <p className="text-white/60 mb-8">
-        Have a question or want to work with us? Fill out the form below and we&apos;ll get back to you as soon as possible.
-      </p>
+    <main className="relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="hidden sm:block absolute top-[-10%] right-[-10%] w-[400px] md:w-[500px] h-[400px] md:h-[500px] bg-[#FF4081] rounded-full blur-[180px] opacity-15"></div>
+      <div className="hidden sm:block absolute bottom-[-10%] left-[-10%] w-[350px] md:w-[450px] h-[350px] md:h-[450px] bg-[#9C27B0] rounded-full blur-[160px] opacity-15"></div>
 
-      {status === "sent" ? (
-        <div className="bg-green-500/20 border border-green-500/50 rounded-lg p-6 text-center">
-          <p className="text-green-300 text-lg font-medium">Thank you for your message!</p>
-          <p className="text-green-300/80 mt-2">We&apos;ll get back to you soon.</p>
-          <button
-            onClick={() => setStatus("idle")}
-            className="mt-4 text-[#FF4081] hover:underline"
-          >
-            Send another message
-          </button>
-        </div>
-      ) : (
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label htmlFor="name" className="block text-white font-medium mb-2">
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              required
-              value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-[#FF4081] transition-colors"
-              placeholder="Your name"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="email" className="block text-white font-medium mb-2">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-[#FF4081] transition-colors"
-              placeholder="your@email.com"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="subject" className="block text-white font-medium mb-2">
-              Subject
-            </label>
-            <input
-              type="text"
-              id="subject"
-              name="subject"
-              required
-              value={formData.subject}
-              onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-              className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-[#FF4081] transition-colors"
-              placeholder="What's this about?"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="message" className="block text-white font-medium mb-2">
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              required
-              rows={5}
-              value={formData.message}
-              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-[#FF4081] transition-colors resize-none"
-              placeholder="Your message..."
-            />
-          </div>
-
-          {status === "error" && (
-            <p className="text-red-400 text-sm">
-              Something went wrong. Please try again.
+      <div className="relative z-10 px-4 sm:px-6 py-8 sm:py-12 md:py-16">
+        <div className="max-w-6xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-10 sm:mb-12">
+            <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 mb-6 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm">
+              <span className="w-2 h-2 rounded-full bg-[#FF4081] animate-pulse"></span>
+              <span className="text-white/80 text-xs sm:text-sm font-medium">
+                Get in Touch
+              </span>
+            </div>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+              Let's Build Your{" "}
+              <span className="bg-gradient-to-r from-[#FF4081] to-[#E040FB] bg-clip-text text-transparent">
+                Website
+              </span>
+            </h1>
+            <p className="text-white/70 text-base sm:text-lg max-w-2xl mx-auto">
+              Ready to get a website that actually generates leads? Fill out the form 
+              and we'll get back to you within 24 hours.
             </p>
-          )}
+          </div>
 
-          <button
-            type="submit"
-            disabled={status === "sending"}
-            className="w-full py-3 bg-[#FF4081] hover:bg-[#FF4081]/90 disabled:bg-[#FF4081]/50 text-white font-semibold rounded-lg transition-colors"
-          >
-            {status === "sending" ? "Sending..." : "Send Message"}
-          </button>
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+            {/* Contact Info */}
+            <div className="order-2 md:order-1">
+              <div className="p-6 sm:p-8 rounded-2xl border border-white/20 bg-white/10 mb-6">
+                <h2 className="text-xl sm:text-2xl font-bold text-white mb-4">
+                  Serving Toronto & Beyond
+                </h2>
+                <p className="text-white/70 text-sm sm:text-base mb-6">
+                  Based in Toronto, Ontario, we work with service businesses across 
+                  the Greater Toronto Area and all of Canada.
+                </p>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <span className="text-xl">📍</span>
+                    <div>
+                      <p className="text-white font-medium">Location</p>
+                      <p className="text-white/60 text-sm">Toronto, Ontario, Canada</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-xl">📧</span>
+                    <div>
+                      <p className="text-white font-medium">Email</p>
+                      <p className="text-white/60 text-sm">karan@nxtbuck.com</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-xl">⏰</span>
+                    <div>
+                      <p className="text-white font-medium">Response Time</p>
+                      <p className="text-white/60 text-sm">Within 24 hours</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-        </form>
-      )}
+              <div className="p-6 sm:p-8 rounded-2xl border border-white/10 bg-white/5">
+                <h3 className="text-lg font-bold text-white mb-3">
+                  Why Toronto Businesses Choose Us
+                </h3>
+                <ul className="space-y-2 text-white/70 text-sm">
+                  <li>✓ Local team that understands the Ontario market</li>
+                  <li>✓ Fast 14-day delivery for GTA businesses</li>
+                  <li>✓ SEO optimized for Toronto & Canadian search</li>
+                  <li>✓ Ongoing support in your timezone</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Contact Form */}
+            <div className="order-1 md:order-2">
+              {status === "sent" ? (
+                <div className="p-6 sm:p-8 rounded-2xl border border-green-500/30 bg-green-500/10 text-center">
+                  <span className="text-4xl mb-4 block">✅</span>
+                  <h3 className="text-xl font-bold text-white mb-2">Message Sent!</h3>
+                  <p className="text-white/70 mb-6">
+                    Thanks for reaching out. We'll get back to you within 24 hours.
+                  </p>
+                  <button
+                    onClick={() => setStatus("idle")}
+                    className="text-[#FF4081] font-medium hover:underline"
+                  >
+                    Send another message
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="p-6 sm:p-8 rounded-2xl border border-white/20 bg-white/10 space-y-5">
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="name" className="block text-white text-sm font-medium mb-2">
+                        Your Name *
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        required
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-[#FF4081] transition-colors text-sm"
+                        placeholder="John Smith"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="phone" className="block text-white text-sm font-medium mb-2">
+                        Phone Number
+                      </label>
+                      <input
+                        type="tel"
+                        id="phone"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-[#FF4081] transition-colors text-sm"
+                        placeholder="(416) 555-0123"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="email" className="block text-white text-sm font-medium mb-2">
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-[#FF4081] transition-colors text-sm"
+                      placeholder="john@company.com"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="business" className="block text-white text-sm font-medium mb-2">
+                      Business Type
+                    </label>
+                    <select
+                      id="business"
+                      value={formData.business}
+                      onChange={(e) => setFormData({ ...formData, business: e.target.value })}
+                      className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white focus:outline-none focus:border-[#FF4081] transition-colors text-sm appearance-none"
+                      style={{
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
+                        backgroundRepeat: "no-repeat",
+                        backgroundPosition: "right 12px center",
+                        backgroundSize: "20px",
+                      }}
+                    >
+                      <option value="" className="bg-[#1a1a2e]">Select your industry</option>
+                      <option value="contractor" className="bg-[#1a1a2e]">Contractor / Trades</option>
+                      <option value="dental" className="bg-[#1a1a2e]">Dental / Healthcare</option>
+                      <option value="legal" className="bg-[#1a1a2e]">Law Firm / Legal</option>
+                      <option value="realestate" className="bg-[#1a1a2e]">Real Estate</option>
+                      <option value="hvac" className="bg-[#1a1a2e]">HVAC / Home Services</option>
+                      <option value="consulting" className="bg-[#1a1a2e]">Consulting</option>
+                      <option value="other" className="bg-[#1a1a2e]">Other</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label htmlFor="message" className="block text-white text-sm font-medium mb-2">
+                      Tell Us About Your Project *
+                    </label>
+                    <textarea
+                      id="message"
+                      required
+                      rows={4}
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-[#FF4081] transition-colors resize-none text-sm"
+                      placeholder="What are you looking for? New website, redesign, or something else?"
+                    />
+                  </div>
+
+                  {status === "error" && (
+                    <p className="text-red-400 text-sm">
+                      Something went wrong. Please try again or email us directly.
+                    </p>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={status === "sending"}
+                    className="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-xl bg-white text-[#673AB7] font-bold text-base hover:bg-white/90 disabled:bg-white/50 transition-all duration-300 active:scale-[0.98]"
+                  >
+                    {status === "sending" ? "Sending..." : "Get My Free Quote"}
+                    {status !== "sending" && <ArrowIcon className="w-5 h-5" />}
+                  </button>
+
+                  <p className="text-white/50 text-xs text-center">
+                    We respond within 24 hours. No spam, ever.
+                  </p>
+                </form>
+              )}
+            </div>
+          </div>
+
+          {/* Bottom CTA */}
+          <div className="mt-12 sm:mt-16 text-center">
+            <Link
+              href="/our-products"
+              className="inline-flex items-center gap-2 text-[#FF4081] font-semibold hover:text-[#E040FB] transition-colors"
+            >
+              View our packages and pricing
+              <ArrowIcon className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </div>
     </main>
   );
 }
-

@@ -2,9 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "About Us | NxtBuck Inc.",
+  title: "About Us | Toronto Web Design Agency",
   description:
-    "We're a web design agency that builds high-converting websites for service businesses. Learn about our mission and approach.",
+    "NxtBuck Inc. is a Toronto-based web design agency specializing in high-converting websites for service businesses across Ontario and Canada. Learn about our mission.",
+  keywords: [
+    "Toronto web design company",
+    "Ontario web agency",
+    "Canadian web designers",
+    "about NxtBuck",
+  ],
 };
 
 const values = [
@@ -92,8 +98,9 @@ export default function AboutUs() {
           </h1>
 
           <p className="text-base sm:text-lg md:text-xl text-white/70 max-w-3xl mx-auto mb-8 leading-relaxed">
-            Most agencies build pretty websites. We build websites that generate leads, 
-            book appointments, and grow your business. There's a difference.
+            Based in Toronto, we build websites that generate leads, 
+            book appointments, and grow businesses across Ontario and Canada. 
+            Most agencies build pretty websites. We build ones that actually work.
           </p>
         </div>
       </section>
@@ -125,18 +132,18 @@ export default function AboutUs() {
               </h2>
               <div className="space-y-4 text-white/70 text-sm sm:text-base leading-relaxed">
                 <p>
-                  We saw too many service businesses losing customers to outdated, 
-                  slow, and confusing websites. Contractors, clinics, law firms - 
+                  We saw too many Toronto and Ontario service businesses losing customers 
+                  to outdated, slow, and confusing websites. Contractors, clinics, law firms - 
                   great at what they do, but struggling online.
                 </p>
                 <p>
-                  Traditional agencies charge $15-50K and take months. DIY builders 
-                  look cheap and don't convert. There had to be a better way.
+                  Traditional GTA agencies charge $15-50K and take months. DIY builders 
+                  look cheap and don't convert. There had to be a better way for Canadian businesses.
                 </p>
                 <p>
-                  So we built it. A focused agency that delivers premium, 
+                  So we built it. A Toronto-based agency that delivers premium, 
                   conversion-optimized websites in 14 days at a fair price. 
-                  No fluff. No endless revisions. Just results.
+                  Serving businesses from Mississauga to Ottawa and across Canada.
                 </p>
               </div>
             </div>
@@ -198,10 +205,10 @@ export default function AboutUs() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-8 sm:mb-12">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4">
-              Built for Service Businesses
+              Built for Ontario Service Businesses
             </h2>
             <p className="text-white/60 max-w-xl mx-auto text-sm sm:text-base">
-              We specialize in websites for businesses where leads mean everything.
+              We specialize in websites for Toronto and GTA businesses where leads mean everything.
             </p>
           </div>
 
@@ -233,7 +240,7 @@ export default function AboutUs() {
             <span className="text-[#FF4081]">Works?</span>
           </h2>
           <p className="text-white/70 text-base sm:text-lg mb-6 sm:mb-8 max-w-xl mx-auto">
-            Let's talk about your business and how we can help you get more leads online.
+            Let's talk about your Toronto or Ontario business and how we can help you get more leads online.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
             <Link

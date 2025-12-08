@@ -32,25 +32,25 @@ export default function NxtBuckFooter() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="px-8 py-8 mt-auto">
-      <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-        <p className="text-black text-sm">
-          © {currentYear} NxtBuck. All rights reserved.
+    <footer className="px-4 sm:px-6 md:px-8 py-6 sm:py-8 mt-auto border-t border-white/10">
+      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
+        <p className="text-white/60 text-xs sm:text-sm text-center sm:text-left order-3 sm:order-1">
+          © {currentYear} NxtBuck Inc. All rights reserved.
         </p>
 
-        <nav className="flex items-center gap-6">
+        <nav className="flex items-center gap-4 sm:gap-6 order-1 sm:order-2">
           {legalLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-black hover:text-black/70 text-sm transition-colors"
+              className="text-white/60 hover:text-white text-xs sm:text-sm transition-colors"
             >
               {link.label}
             </Link>
           ))}
         </nav>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 order-2 sm:order-3">
           {socialLinks.map((link) => (
             <a
               key={link.href}
@@ -58,7 +58,7 @@ export default function NxtBuckFooter() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={link.label}
-              className={`text-black ${link.hoverColor} transition-colors`}
+              className={`text-white/60 ${link.hoverColor} transition-colors`}
             >
               {link.icon}
             </a>
@@ -68,4 +68,3 @@ export default function NxtBuckFooter() {
     </footer>
   );
 }
-

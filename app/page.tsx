@@ -2,9 +2,17 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "NxtBuck Inc. | Websites That Generate Revenue",
+  title: "Web Design Toronto | High-Converting Websites for Service Businesses",
   description:
-    "We build high-converting websites for service businesses. Turn your website into a lead-generating machine.",
+    "Toronto's top web design agency for contractors, clinics, law firms & service businesses. Custom websites that generate leads, delivered in 14 days. Serving Ontario & Canada.",
+  keywords: [
+    "web design Toronto",
+    "Toronto web agency",
+    "website design GTA",
+    "Ontario web development",
+    "contractor website Toronto",
+    "small business website Canada",
+  ],
 };
 
 const stats = [
@@ -83,7 +91,7 @@ export default function Home() {
             <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 mb-6 sm:mb-8 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-[#FF4081] animate-pulse"></span>
               <span className="text-white/80 text-xs sm:text-sm font-medium">
-                Web Design Agency for Service Businesses
+                Toronto's Web Design Agency for Service Businesses
               </span>
             </div>
 
@@ -98,8 +106,8 @@ export default function Home() {
             {/* Subheadline */}
             <p className="text-base sm:text-lg md:text-xl text-white/70 max-w-2xl mb-6 sm:mb-8 leading-relaxed">
               We build high-converting websites for contractors, clinics, law
-              firms, and service businesses. Get a site that actually brings in
-              leads - delivered in 14 days or less.
+              firms, and service businesses across Toronto, the GTA, and Ontario.
+              Get a site that actually brings in leads - delivered in 14 days.
             </p>
 
             {/* CTAs */}
@@ -163,9 +171,9 @@ export default function Home() {
               <span className="text-[#FF4081]">best salesperson.</span>
             </h2>
             <p className="text-base sm:text-lg text-white/70 leading-relaxed">
-              Most service business websites look the same, say nothing
+              Most Toronto service business websites look the same, say nothing
               compelling, and don't convert. We fix that with strategic design,
-              persuasive copy, and built-in lead capture.
+              persuasive copy, and built-in lead capture for your Ontario customers.
             </p>
           </div>
 
@@ -322,7 +330,7 @@ export default function Home() {
           </h2>
           <p className="text-base sm:text-lg text-white/70 mb-8 sm:mb-10 max-w-2xl mx-auto">
             Book a free 30-minute strategy call. We'll analyze your current site
-            and show you exactly how to get more leads.
+            and show you exactly how to get more leads in Toronto and across Canada.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
             <Link
