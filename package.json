@@ -8,11 +8,11 @@
     "start": "next start",
     "lint": "eslint",
     "predeploy": "pnpm run build",
-    "cdk": "cd infra && pnpm cdk",
-    "cdk:synth": "cd infra && pnpm cdk synth",
-    "cdk:diff": "cd infra && pnpm cdk diff",
-    "cdk:deploy": "cd infra && pnpm cdk deploy",
-    "cdk:build": "cd infra && pnpm build"
+    "cdk": "pnpm exec cdk --app \"pnpm exec ts-node --prefer-ts-exts infra/bin/nxtbuck.ts\"",
+    "cdk:synth": "pnpm exec cdk synth --app \"pnpm exec ts-node --prefer-ts-exts infra/bin/nxtbuck.ts\"",
+    "cdk:diff": "pnpm exec cdk diff --app \"pnpm exec ts-node --prefer-ts-exts infra/bin/nxtbuck.ts\"",
+    "cdk:deploy": "pnpm exec cdk deploy --app \"pnpm exec ts-node --prefer-ts-exts infra/bin/nxtbuck.ts\"",
+    "cdk:build": "pnpm exec tsc -p tsconfig.json"
   },
   "dependencies": {
     "dotenv": "^16.4.5",

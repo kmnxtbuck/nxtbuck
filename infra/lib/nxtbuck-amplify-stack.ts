@@ -59,7 +59,12 @@ export class NxtbuckAmplifyStack extends Stack {
       },
     });
 
-    amplifyApp.addBranch(githubBranch, { branchName: githubBranch });
+    const branch = amplifyApp.addBranch(githubBranch, { branchName: githubBranch });
+
+    // Map custom domain: nxtbuck.com and www.nxtbuck.com
+    const domain = amplifyApp.addDomain("nxtbuck.com");
+    domain.mapRoot(branch);
+    domain.mapSubDomain(branch, "www");
   }
 }
 

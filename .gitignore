@@ -50,3 +50,4 @@ next-env.d.ts
 /infra/.env
 /infra/.env.local
 /infra/.pnpm-store
+cdk.out
