@@ -37,7 +37,7 @@ export default function ContactUs() {
     setStatus("sending");
 
     try {
-      const response = await fetch("https://formspree.io/f/mkgljode", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -52,13 +52,17 @@ export default function ContactUs() {
         }),
       });
 
-      if (response.ok) {
+      const data = await response.json();
+
+      if (response.ok && data.success) {
         setStatus("sent");
         setFormData({ name: "", email: "", phone: "", business: "", budget: "", message: "" });
       } else {
+        console.error("Form submission error:", data.error);
         setStatus("error");
       }
-    } catch {
+    } catch (error) {
+      console.error("Form submission error:", error);
       setStatus("error");
     }
   };
@@ -175,11 +179,12 @@ export default function ContactUs() {
                     </div>
                     <div>
                       <label htmlFor="phone" className="block text-white text-sm font-medium mb-2">
-                        Phone Number
+                        Phone Number *
                       </label>
                       <input
                         type="tel"
                         id="phone"
+                        required
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-[#FF4081] transition-colors text-sm"

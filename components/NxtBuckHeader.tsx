@@ -60,31 +60,31 @@ export default function NxtBuckHeader() {
   return (
     <>
       <header className="relative z-50 flex items-center justify-between px-6 md:px-8 py-4">
-        <Link href="/" className="flex items-center gap-3">
-          <img
-            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/logo.png`}
-            alt="NxtBuck Logo"
-            width={48}
-            height={48}
+      <Link href="/" className="flex items-center gap-3">
+        <img
+          src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/logo.png`}
+          alt="NxtBuck Logo"
+          width={48}
+          height={48}
             className="object-contain w-10 h-10 md:w-12 md:h-12"
-          />
+        />
           <span className="text-lg md:text-xl font-bold text-white tracking-tight">
-            NxtBuck
-          </span>
-        </Link>
+          NxtBuck
+        </span>
+      </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
+        {navLinks.map((link) => (
+          <Link
+            key={link.href}
+            href={link.href}
               className="text-white/80 hover:text-white font-medium transition-colors"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
+          >
+            {link.label}
+          </Link>
+        ))}
+      </nav>
 
         {/* Mobile Menu Button */}
         <button
@@ -95,7 +95,7 @@ export default function NxtBuckHeader() {
         >
           <HamburgerIcon isOpen={isMenuOpen} />
         </button>
-      </header>
+    </header>
 
       {/* Mobile Menu Overlay */}
       <div
