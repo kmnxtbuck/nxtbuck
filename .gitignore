@@ -39,3 +39,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# pnpm store
+.pnpm-store
+
+# CDK / infra artifacts
+/infra/node_modules
+/infra/dist
+/infra/cdk.out
+/infra/.env
+/infra/.env.local
+/infra/.pnpm-store
