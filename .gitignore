@@ -43,6 +43,14 @@ next-env.d.ts
 # pnpm store
 .pnpm-store
 
+# Amplify Gen 2 local artifacts
+/amplify/.config/local-*
+/amplify/.temp
+/amplify/mock-data
+/amplify/logs
+/amplify/#current-cloud-backend
+/amplify/*-parameters.json
+
 # CDK / infra artifacts
 /infra/node_modules
 /infra/dist
