@@ -1,5 +1,6 @@
 import { SecretValue, Stack, StackProps } from "aws-cdk-lib";
 import { BuildSpec } from "aws-cdk-lib/aws-codebuild";
+import * as iam from "aws-cdk-lib/aws-iam";
 import { Construct } from "constructs";
 import * as amplify from "@aws-cdk/aws-amplify-alpha";
 
@@ -16,8 +17,16 @@ export class NxtbuckAmplifyStack extends Stack {
     const githubBranch = requireEnv("GITHUB_BRANCH");
     const githubTokenSecretName = requireEnv("GITHUB_TOKEN_SECRET_NAME");
 
+    const amplifyServiceRole = new iam.Role(this, "AmplifyServiceRole", {
+      assumedBy: new iam.ServicePrincipal("amplify.amazonaws.com"),
+      managedPolicies: [
+        iam.ManagedPolicy.fromAwsManagedPolicyName("AdministratorAccess-Amplify"),
+      ],
+    });
+
     const amplifyApp = new amplify.App(this, "NxtbuckAmplifyApp", {
       appName: "nxtbuck",
+      role: amplifyServiceRole,
       sourceCodeProvider: new amplify.GitHubSourceCodeProvider({
         owner: githubOwner,
         repository: githubRepo,
