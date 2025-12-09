@@ -16,11 +16,16 @@ export async function POST(request: NextRequest) {
 
     // Get credentials from environment variables
     const clientEmail = process.env.GOOGLE_SHEETS_CLIENT_EMAIL;
-    const privateKey = process.env.GOOGLE_SHEETS_PRIVATE_KEY;
+    // Private keys often come in as single-line with escaped \n from env systems.
+    const privateKey = process.env.GOOGLE_SHEETS_PRIVATE_KEY?.replace(/\\n/g, "\n");
     const sheetId = process.env.GOOGLE_SHEETS_SHEET_ID;
 
     if (!clientEmail || !privateKey || !sheetId) {
-      console.error("Missing Google Sheets credentials");
+      console.error("Missing Google Sheets credentials", {
+        hasClientEmail: Boolean(clientEmail),
+        hasPrivateKey: Boolean(privateKey),
+        hasSheetId: Boolean(sheetId),
+      });
       return NextResponse.json(
         { error: "Server configuration error" },
         { status: 500 }
