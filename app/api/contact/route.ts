@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { google } from "googleapis";
+import { secret } from '@aws-amplify/backend';
 
 export async function POST(request: NextRequest) {
   try {
@@ -15,9 +16,9 @@ export async function POST(request: NextRequest) {
     }
 
     // Get credentials from environment variables
-    const clientEmail = process.env.GOOGLE_SHEETS_CLIENT_EMAIL;
-    const privateKey = process.env.GOOGLE_SHEETS_PRIVATE_KEY?.replace(/\\n/g, "\n");
-    const sheetId = process.env.GOOGLE_SHEETS_SHEET_ID;
+    const clientEmail = secret('GOOGLE_SHEETS_CLIENT_EMAIL');
+    const privateKey = secret('GOOGLE_SHEETS_PRIVATE_KEY');
+    const sheetId = secret('GOOGLE_SHEETS_SHEET_ID');
 
     if (!clientEmail || !privateKey || !sheetId) {
       console.error("Missing Google Sheets credentials");
