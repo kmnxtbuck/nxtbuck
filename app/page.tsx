@@ -197,7 +197,7 @@ export default function Home() {
               },
             ].map((item, index) => (
               <div
-                key={index}
+              key={index}
                 className="p-5 sm:p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm hover:border-[#FF4081]/30 transition-colors"
               >
                 <div className="text-[#FF4081] font-semibold mb-2 text-sm sm:text-base">

@@ -146,33 +146,33 @@ export default function ContactUs() {
 
             {/* Contact Form */}
             <div className="order-1 md:order-2">
-              {status === "sent" ? (
+      {status === "sent" ? (
                 <div className="p-6 sm:p-8 rounded-2xl border border-green-500/30 bg-green-500/10 text-center">
                   <span className="text-4xl mb-4 block">✅</span>
                   <h3 className="text-xl font-bold text-white mb-2">Message Sent!</h3>
                   <p className="text-white/70 mb-6">
                     Thanks for reaching out. We'll get back to you within 24 hours.
                   </p>
-                  <button
-                    onClick={() => setStatus("idle")}
+          <button
+            onClick={() => setStatus("idle")}
                     className="text-[#FF4081] font-medium hover:underline"
-                  >
-                    Send another message
-                  </button>
-                </div>
-              ) : (
+          >
+            Send another message
+          </button>
+        </div>
+      ) : (
                 <form onSubmit={handleSubmit} className="p-6 sm:p-8 rounded-2xl border border-white/20 bg-white/10 space-y-5">
                   <div className="grid sm:grid-cols-2 gap-4">
-                    <div>
+          <div>
                       <label htmlFor="name" className="block text-white text-sm font-medium mb-2">
                         Your Name *
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        required
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            </label>
+            <input
+              type="text"
+              id="name"
+              required
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-[#FF4081] transition-colors text-sm"
                         placeholder="John Smith"
                       />
@@ -189,24 +189,24 @@ export default function ContactUs() {
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-[#FF4081] transition-colors text-sm"
                         placeholder="(416) 555-0123"
-                      />
+            />
                     </div>
-                  </div>
+          </div>
 
-                  <div>
+          <div>
                     <label htmlFor="email" className="block text-white text-sm font-medium mb-2">
                       Email Address *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      required
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            </label>
+            <input
+              type="email"
+              id="email"
+              required
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-[#FF4081] transition-colors text-sm"
                       placeholder="john@company.com"
-                    />
-                  </div>
+            />
+          </div>
 
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
@@ -235,10 +235,10 @@ export default function ContactUs() {
                         <option value="other" className="bg-[#1a1a2e]">Other</option>
                       </select>
                     </div>
-                    <div>
+          <div>
                       <label htmlFor="budget" className="block text-white text-sm font-medium mb-2">
                         Budget Range
-                      </label>
+            </label>
                       <select
                         id="budget"
                         value={formData.budget}
@@ -260,43 +260,43 @@ export default function ContactUs() {
                         <option value="not-sure" className="bg-[#1a1a2e]">Not sure yet</option>
                       </select>
                     </div>
-                  </div>
+          </div>
 
-                  <div>
+          <div>
                     <label htmlFor="message" className="block text-white text-sm font-medium mb-2">
                       Tell Us About Your Project *
-                    </label>
-                    <textarea
-                      id="message"
-                      required
+            </label>
+            <textarea
+              id="message"
+              required
                       rows={4}
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+              value={formData.message}
+              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-[#FF4081] transition-colors resize-none text-sm"
                       placeholder="What are you looking for? New website, redesign, or something else?"
-                    />
-                  </div>
+            />
+          </div>
 
-                  {status === "error" && (
-                    <p className="text-red-400 text-sm">
+          {status === "error" && (
+            <p className="text-red-400 text-sm">
                       Something went wrong. Please try again or email us directly.
-                    </p>
-                  )}
+            </p>
+          )}
 
-                  <button
-                    type="submit"
-                    disabled={status === "sending"}
+          <button
+            type="submit"
+            disabled={status === "sending"}
                     className="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-xl bg-white text-[#673AB7] font-bold text-base hover:bg-white/90 disabled:bg-white/50 transition-all duration-300 active:scale-[0.98]"
-                  >
+          >
                     {status === "sending" ? "Sending..." : "Get My Free Quote"}
                     {status !== "sending" && <ArrowIcon className="w-5 h-5" />}
-                  </button>
+          </button>
 
                   <p className="text-white/50 text-xs text-center">
                     We respond within 24 hours. No spam, ever.
                   </p>
-                </form>
-              )}
+        </form>
+      )}
             </div>
           </div>
 

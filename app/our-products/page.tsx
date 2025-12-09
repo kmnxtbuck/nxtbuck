@@ -138,14 +138,14 @@ export default function OurProducts() {
             <span className="text-[#FF4081] text-xs sm:text-sm font-semibold tracking-wide uppercase">
               Pricing & Packages
             </span>
-          </div>
+        </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white tracking-tight mb-4 sm:mb-6 leading-[1.1]">
             Websites That{" "}
             <span className="bg-gradient-to-r from-[#FF4081] to-[#E040FB] bg-clip-text text-transparent">
               Generate Revenue
             </span>
-          </h1>
+        </h1>
 
           <p className="text-base sm:text-lg md:text-xl text-white/60 max-w-2xl mx-auto leading-relaxed px-4">
             Choose the package that matches your ambition. Every solution is
@@ -218,8 +218,8 @@ export default function OurProducts() {
                     {pkg.setupFee && (
                       <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-[#FF4081]/80 font-medium">
                         {pkg.setupFee}
-                      </p>
-                    )}
+          </p>
+        )}
                   </div>
                 </div>
 
@@ -301,7 +301,7 @@ export default function OurProducts() {
               Book a free 30-minute strategy call with our Toronto team. We'll analyze your current
               situation and recommend the perfect solution for your Ontario business
               goals.
-            </p>
+        </p>
             <Link
               href="/contact-us"
               className="inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl bg-white text-[#0a0a0a] font-bold text-sm sm:text-base hover:bg-white/90 transition-all duration-300 shadow-2xl shadow-white/10 hover:shadow-white/20 active:scale-[0.98] sm:hover:scale-[1.02]"

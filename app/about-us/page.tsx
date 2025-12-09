@@ -167,7 +167,7 @@ export default function AboutUs() {
             </div>
           </div>
         </div>
-      </section>
+        </section>
 
       {/* Values Section */}
       <section className="relative z-10 px-4 sm:px-6 py-12 sm:py-16 md:py-20 bg-white/5 border-y border-white/10">
@@ -197,8 +197,8 @@ export default function AboutUs() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
+          </div>
+        </section>
 
       {/* Who We Work With */}
       <section className="relative z-10 px-4 sm:px-6 py-12 sm:py-16 md:py-20">
@@ -258,7 +258,7 @@ export default function AboutUs() {
             </Link>
           </div>
         </div>
-      </section>
+        </section>
     </main>
   );
 }
