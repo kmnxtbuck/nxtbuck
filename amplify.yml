@@ -12,3 +12,12 @@ frontend:
         - echo "GOOGLE_SHEETS_PRIVATE_KEY=$GOOGLE_SHEETS_PRIVATE_KEY" >> .env.production
         - echo "GOOGLE_SHEETS_SHEET_ID=$GOOGLE_SHEETS_SHEET_ID" >> .env.production
         - pnpm run build
+  artifacts:
+    baseDirectory: .next
+    files:
+      - "**/*"
+  cache:
+    paths:
+      - node_modules/**/*
+      - .next/cache/**/*
+      - ~/.pnpm-store
