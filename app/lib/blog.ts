@@ -9,7 +9,7 @@ export type BlogPostMeta = {
   tags?: string[];
 };
 
-const BLOG_DIR = path.join(process.cwd(), "content", "blog");
+const BLOG_DIR = path.join(process.cwd(), "app", "content", "blog");
 
 export function getAllPostsMeta(): BlogPostMeta[] {
   const files = fs.readdirSync(BLOG_DIR).filter((f) => f.endsWith(".mdx"));
