@@ -114,10 +114,13 @@ Requirements:
   * Practical examples and actionable advice
   * Bullet lists where appropriate
   * Code examples if relevant (use markdown code blocks)
-  * A call-to-action at the end encouraging readers to contact NxtBuck
+  * A call-to-action section at the end (after a horizontal rule ---) encouraging readers to contact NxtBuck
+  * The CTA must include a clickable link to the contact form: [Get your free custom homepage mockup →](/contact-us) or similar engaging text
+  * End with a location tagline: "*Based in Toronto, serving service businesses across the GTA and all of Ontario.*"
 - Style: Write as if you're a knowledgeable web developer helping small business owners understand web development concepts, pricing, or best practices
 - Context: Reference Toronto, Ontario, or Canadian business context when relevant
 - Use hyphens (-) instead of em dashes (—) throughout
+- Links: Use Next.js Link format for internal links, e.g., [link text](/contact-us) for the contact form
 
 Write the complete blog post now, starting with the metadata export.
 """.strip()
