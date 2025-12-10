@@ -34,14 +34,23 @@ export default function ContactForm() {
     if (!interactedFieldsRef.current.has(field)) {
       interactedFieldsRef.current.add(field);
       trackEvent("form_field_interaction", {
-        form_id: formId,
-        form_field: field,
+        event_data: {
+          form_id: formId,
+          form_field: field,
+          ...utmPayload,
+        },
       });
     }
 
     if (!hasStartedRef.current) {
       hasStartedRef.current = true;
-      trackEvent("form_start", { form_id: formId, form_field: field });
+      trackEvent("form_start", {
+        event_data: {
+          form_id: formId,
+          form_field: field,
+          ...utmPayload,
+        },
+      });
     }
   };
 
@@ -62,14 +71,11 @@ export default function ContactForm() {
     e.preventDefault();
     setStatus("sending");
 
-    trackEvent("generate_lead", {
+    trackEvent("form_submit", {
       event_data: {
         form_id: formId,
+        ...utmPayload,
       },
-    });
-    trackEvent("form_submit", {
-      form_id: formId,
-      ...utmPayload,
     });
 
     try {
@@ -94,20 +100,31 @@ export default function ContactForm() {
       if (response.ok && data.success) {
         setStatus("sent");
         setFormData({ name: "", email: "", phone: "", business: "", budget: "", message: "" });
-        trackEvent("form_complete", { form_id: formId, ...utmPayload });
+        trackEvent("form_complete", {
+          event_data: {
+            form_id: formId,
+            ...utmPayload,
+          },
+        });
       } else {
         console.error("Form submission error:", data.error);
         trackEvent("form_error", {
-          form_id: formId,
-          error_message: data?.error || "Unknown error",
+          event_data: {
+            form_id: formId,
+            error_message: data?.error || "Unknown error",
+            ...utmPayload,
+          },
         });
         setStatus("error");
       }
     } catch (error) {
       console.error("Form submission error:", error);
       trackEvent("form_error", {
-        form_id: formId,
-        error_message: error instanceof Error ? error.message : "Unknown error",
+        event_data: {
+          form_id: formId,
+          error_message: error instanceof Error ? error.message : "Unknown error",
+          ...utmPayload,
+        },
       });
       setStatus("error");
     }
@@ -131,7 +148,8 @@ export default function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className={`p-6 sm:p-8 rounded-2xl border border-white/20 bg-white/10 space-y-5 ${formId}`}
+      id={formId}
+      className={`p-6 sm:p-8 rounded-2xl border border-white/20 bg-white/10 space-y-5`}
     >
       {/* Hidden UTM fields – first touch */}
       <input type="hidden" name="first_utm_source" value={firstTouch?.utm_source ?? ""} readOnly />
