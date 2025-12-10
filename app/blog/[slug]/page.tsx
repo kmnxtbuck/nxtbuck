@@ -37,8 +37,8 @@ export default function BlogPostPage({ params }: PageProps) {
   }
 
   return (
-    <main className="max-w-3xl mx-auto px-4 py-12">
-      <div className="mb-6">
+    <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <div className="mb-6 sm:mb-8">
         {meta.date && (
           <p className="text-xs text-white/60">
             {new Date(meta.date).toLocaleDateString("en-CA", {
@@ -48,13 +48,13 @@ export default function BlogPostPage({ params }: PageProps) {
             })}
           </p>
         )}
-        <h1 className="mt-1 text-3xl font-bold text-white">{meta.title}</h1>
+        <h1 className="mt-1 text-2xl sm:text-3xl font-bold text-white">{meta.title}</h1>
         {meta.description && (
           <p className="text-sm text-white/60 mt-2">{meta.description}</p>
         )}
       </div>
 
-      <article className="prose prose-invert prose-lg max-w-none prose-headings:text-white prose-headings:font-bold prose-p:text-white/80 prose-p:leading-relaxed prose-a:text-[#FF4081] prose-a:no-underline hover:prose-a:underline prose-strong:text-white prose-ul:text-white/80 prose-ol:text-white/80 prose-li:text-white/80 prose-hr:border-white/20">
+      <article className="prose prose-invert prose-sm sm:prose-lg max-w-none prose-headings:text-white prose-headings:font-bold prose-p:text-white/80 prose-p:leading-relaxed prose-a:text-[#FF4081] prose-a:no-underline hover:prose-a:underline prose-strong:text-white prose-ul:text-white/80 prose-ol:text-white/80 prose-li:text-white/80 prose-hr:border-white/20">
         <MdxContent slug={params.slug} />
       </article>
     </main>
