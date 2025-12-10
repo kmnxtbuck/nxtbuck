@@ -67,13 +67,28 @@ export default function ContactForm() {
     last_utm_content: lastTouch?.utm_content ?? "",
   };
 
+  // Normalize phone number (remove all non-digit characters)
+  const normalizePhone = (phone: string): string => {
+    return phone.replace(/\D/g, "");
+  };
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setStatus("sending");
 
+    const nameParts = formData.name.trim().split(/\s+/);
+    const firstName = nameParts[0] || "";
+    const lastName = nameParts.slice(1).join(" ") || "";
+
     trackEvent("form_submit", {
       event_data: {
         form_id: formId,
+        user_data: {
+          email: formData.email,
+          phone: normalizePhone(formData.phone),
+          first_name: firstName,
+          last_name: lastName,
+        },
         ...utmPayload,
       },
     });
@@ -98,11 +113,27 @@ export default function ContactForm() {
       const data = await response.json();
 
       if (response.ok && data.success) {
+        // Capture form data before resetting
+        const submittedName = formData.name;
+        const submittedEmail = formData.email;
+        const submittedPhone = formData.phone;
+        
         setStatus("sent");
         setFormData({ name: "", email: "", phone: "", business: "", budget: "", message: "" });
+        
+        const nameParts = submittedName.trim().split(/\s+/);
+        const firstName = nameParts[0] || "";
+        const lastName = nameParts.slice(1).join(" ") || "";
+
         trackEvent("form_complete", {
           event_data: {
             form_id: formId,
+            user_data: {
+              email: submittedEmail,
+              phone: normalizePhone(submittedPhone),
+              first_name: firstName,
+              last_name: lastName,
+            },
             ...utmPayload,
           },
         });
