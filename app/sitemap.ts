@@ -1,8 +1,11 @@
 import type { MetadataRoute } from "next";
+import { getAllPostsMeta } from "@/lib/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.nxtbuck.com";
   const lastModified = new Date();
+
+  const posts = getAllPostsMeta();
 
   return [
     {
@@ -24,6 +27,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/blog`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/contact-us`,
       lastModified,
       changeFrequency: "monthly",
@@ -41,6 +50,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.3,
     },
+    ...posts.map((post) => ({
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: post.date ? new Date(post.date) : lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
   ];
 }
 
