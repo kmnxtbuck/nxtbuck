@@ -18,7 +18,7 @@ function RouteChangeTrackerLogic() {
 
     if (typeof window !== 'undefined' && window.dataLayer) {
       window.dataLayer.push({
-        event: 'virtual_page_view',
+        event: 'page_view',
         page_path: pathname,
         page_title: document.title
       })
