@@ -135,7 +135,6 @@ def call_llm(topic: str, today_str: str) -> str:
                     "You are a precise and practical technical writer for a web development agency. "
                     "Always return well-structured MDX with correct metadata export format. "
                     "Write in a helpful, professional tone that small business owners can understand."
-                    "Use em dashes (—) instead of hyphens (-)."
                 ),
             },
             {"role": "user", "content": prompt},
