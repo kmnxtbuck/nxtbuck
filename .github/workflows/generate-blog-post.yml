@@ -1,0 +1,104 @@
+name: Generate Daily Blog Post
+
+on:
+  schedule:
+    # Run daily at 9:00 AM UTC (adjust timezone as needed)
+    - cron: '0 9 * * *'
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  generate-blog-post:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install python-slugify openai
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "Karan Mirani"
+          git config --global user.email "karan@nxtbuck.com"
+
+      - name: Check if topics.txt exists and has topics
+        id: check-topics
+        run: |
+          if [ ! -f "topics.txt" ]; then
+            echo "has_topics=false" >> $GITHUB_OUTPUT
+            echo "error=topics.txt not found" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          TOPIC_COUNT=$(grep -v '^#' topics.txt | grep -v '^$' | wc -l | tr -d ' ')
+          if [ "$TOPIC_COUNT" -eq "0" ]; then
+            echo "has_topics=false" >> $GITHUB_OUTPUT
+            echo "error=No topics remaining in topics.txt" >> $GITHUB_OUTPUT
+          else
+            echo "has_topics=true" >> $GITHUB_OUTPUT
+            echo "topic_count=$TOPIC_COUNT" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Generate blog post
+        if: steps.check-topics.outputs.has_topics == 'true'
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          CI: "true"
+          GITHUB_ACTIONS: "true"
+        run: |
+          python generate_blog_post.py
+        continue-on-error: true
+
+      - name: Check for changes
+        id: check-changes
+        if: steps.check-topics.outputs.has_topics == 'true'
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Push changes
+        if: steps.check-topics.outputs.has_topics == 'true' && steps.check-changes.outputs.has_changes == 'true'
+        run: |
+          git push origin main
+
+      - name: Create issue if no topics
+        if: steps.check-topics.outputs.has_topics == 'false'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const error = '${{ steps.check-topics.outputs.error }}';
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: 'Blog post generation: No topics available',
+              body: `The daily blog post generation workflow could not run because: ${error}\n\nPlease add more topics to topics.txt.`,
+              labels: ['automation', 'maintenance']
+            });
+
+      - name: Create issue if script fails
+        if: failure() && steps.check-topics.outputs.has_topics == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: 'Blog post generation failed',
+              body: 'The daily blog post generation workflow failed. Please check the workflow logs.',
+              labels: ['bug', 'automation']
+            });
+

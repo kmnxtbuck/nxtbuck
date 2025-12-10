@@ -32,9 +32,11 @@ export function getAllPostsMeta(): BlogPostMeta[] {
         const metaStr = metaMatch[1];
         const titleMatch = metaStr.match(/title:\s*["']([^"']+)["']/);
         const descMatch = metaStr.match(/description:\s*["']([^"']+)["']/);
+        const dateMatch = metaStr.match(/date:\s*["']([^"']+)["']/);
         
         if (titleMatch) meta.title = titleMatch[1];
         if (descMatch) meta.description = descMatch[1];
+        if (dateMatch) meta.date = dateMatch[1];
       } catch {
         // ignore parsing errors
       }
