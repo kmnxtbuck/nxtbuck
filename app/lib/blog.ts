@@ -7,7 +7,7 @@ export type BlogPostMeta = {
   slug: string;
   title: string;
   description: string;
-  date?: string;
+  date: string;
   tags?: string[];
 };
 
@@ -49,7 +49,7 @@ export function getAllPostsMeta(): BlogPostMeta[] {
     };
   });
 
-  return posts.sort((a, b) => (a.date && b.date && a.date < b.date ? 1 : -1));
+  return posts.sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
 export function getPostMeta(slug: string): BlogPostMeta | null {
