@@ -31,6 +31,13 @@ export default function ContactUs() {
     budget: "",
     message: "",
   });
+  const [utmParams, setUtmParams] = useState({
+    utm_source: "",
+    utm_medium: "",
+    utm_campaign: "",
+    utm_term: "",
+    utm_content: "",
+  });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const formId = "contact_page_form";
   const hasStartedRef = useRef(false);
@@ -40,15 +47,51 @@ export default function ContactUs() {
     trackEvent("form_view", { form_id: formId });
   }, [formId]);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"] as const;
+    const searchParams = new URLSearchParams(window.location.search);
+    const storedRaw = window.localStorage.getItem("utm_params");
+    const stored = storedRaw ? (JSON.parse(storedRaw) as Record<string, string>) : {};
+
+    const next: Record<string, string> = {};
+    UTM_KEYS.forEach((key) => {
+      const fromUrl = searchParams.get(key);
+      const fromStore = stored[key];
+      if (fromUrl) {
+        next[key] = fromUrl;
+      } else if (fromStore) {
+        next[key] = fromStore;
+      } else {
+        next[key] = "";
+      }
+    });
+
+    setUtmParams({
+      utm_source: next.utm_source || "",
+      utm_medium: next.utm_medium || "",
+      utm_campaign: next.utm_campaign || "",
+      utm_term: next.utm_term || "",
+      utm_content: next.utm_content || "",
+    });
+
+    // Persist the latest values
+    window.localStorage.setItem("utm_params", JSON.stringify(next));
+  }, []);
+
   const handleFieldInteraction = (field: string) => {
     if (!interactedFieldsRef.current.has(field)) {
       interactedFieldsRef.current.add(field);
-      trackEvent("form_field_interaction", { form_id: formId, field_name: field });
+      trackEvent("form_field_interaction", {
+        form_id: formId,
+        form_field: field,
+      });
     }
 
     if (!hasStartedRef.current) {
       hasStartedRef.current = true;
-      trackEvent("form_start", { form_id: formId, field_name: field });
+      trackEvent("form_start", { form_id: formId, form_field: field });
     }
   };
 
@@ -77,6 +120,11 @@ export default function ContactUs() {
           business: formData.business,
           budget: formData.budget,
           message: formData.message,
+          utm_source: utmParams.utm_source,
+          utm_medium: utmParams.utm_medium,
+          utm_campaign: utmParams.utm_campaign,
+          utm_term: utmParams.utm_term,
+          utm_content: utmParams.utm_content,
         }),
       });
 
@@ -202,6 +250,12 @@ export default function ContactUs() {
                   onSubmit={handleSubmit}
                   className={`p-6 sm:p-8 rounded-2xl border border-white/20 bg-white/10 space-y-5 ${formId}`}
                 >
+                  {/* UTM hidden fields */}
+                  <input type="hidden" name="utm_source" value={utmParams.utm_source} readOnly />
+                  <input type="hidden" name="utm_medium" value={utmParams.utm_medium} readOnly />
+                  <input type="hidden" name="utm_campaign" value={utmParams.utm_campaign} readOnly />
+                  <input type="hidden" name="utm_term" value={utmParams.utm_term} readOnly />
+                  <input type="hidden" name="utm_content" value={utmParams.utm_content} readOnly />
                   <div className="grid sm:grid-cols-2 gap-4">
           <div>
                       <label htmlFor="name" className="block text-white text-sm font-medium mb-2">
