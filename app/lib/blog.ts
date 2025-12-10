@@ -1,32 +1,42 @@
 import fs from "node:fs";
 import path from "node:path";
 
+const BLOG_DIR = path.join(process.cwd(), "app", "content", "blog");
+
 export type BlogPostMeta = {
   slug: string;
   title: string;
   description: string;
-  date: string; // ISO
+  date?: string;
   tags?: string[];
 };
 
-const BLOG_DIR = path.join(process.cwd(), "app", "content", "blog");
-
 export function getAllPostsMeta(): BlogPostMeta[] {
+  if (!fs.existsSync(BLOG_DIR)) {
+    return [];
+  }
+
   const files = fs.readdirSync(BLOG_DIR).filter((f) => f.endsWith(".mdx"));
 
   const posts = files.map((file) => {
     const slug = file.replace(/\.mdx$/, "");
     const source = fs.readFileSync(path.join(BLOG_DIR, file), "utf8");
 
-    // Very lightweight “frontmatter”: first comment block
-    // Or switch to gray-matter if you prefer real YAML frontmatter.
-    const metaMatch = source.match(/\/\*([\s\S]*?)\*\//);
-    let meta: Partial<BlogPostMeta> = {};
+    // Extract metadata from the exported metadata object
+    const metaMatch = source.match(/export\s+const\s+metadata\s*=\s*({[\s\S]*?});/);
+    let meta: Partial<BlogPostMeta> = { slug };
+    
     if (metaMatch) {
       try {
-        meta = JSON.parse(metaMatch[1]);
+        // Simple extraction - in production you might want a more robust parser
+        const metaStr = metaMatch[1];
+        const titleMatch = metaStr.match(/title:\s*["']([^"']+)["']/);
+        const descMatch = metaStr.match(/description:\s*["']([^"']+)["']/);
+        
+        if (titleMatch) meta.title = titleMatch[1];
+        if (descMatch) meta.description = descMatch[1];
       } catch {
-        // ignore bad meta
+        // ignore parsing errors
       }
     }
 
@@ -39,8 +49,7 @@ export function getAllPostsMeta(): BlogPostMeta[] {
     };
   });
 
-  // newest first
-  return posts.sort((a, b) => (a.date < b.date ? 1 : -1));
+  return posts.sort((a, b) => (a.date && b.date && a.date < b.date ? 1 : -1));
 }
 
 export function getPostMeta(slug: string): BlogPostMeta | null {

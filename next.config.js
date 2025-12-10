@@ -1,10 +1,11 @@
 const createMDX = require("@next/mdx");
-const remarkGfm = require("remark-gfm");
+const _remarkGfm = require("remark-gfm");
+const remarkGfm = _remarkGfm.default || _remarkGfm;
 
 const withMDX = createMDX({
   extension: /\.mdx?$/,
   options: {
-    remarkPlugins: [remarkGfm],
+    remarkPlugins: [remarkGfm].filter(Boolean),
   },
 });
 

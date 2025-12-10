@@ -1,59 +1,62 @@
-import fs from "node:fs";
-import path from "node:path";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import MdxContent from "@/components/MdxContent";
 import { getAllPostsMeta, getPostMeta } from "@/lib/blog";
 
-const BLOG_DIR = path.join(process.cwd(), "content", "blog");
+type PageProps = {
+  params: { slug: string };
+};
 
-type Params = { slug: string };
+export const dynamicParams = false;
 
-export async function generateStaticParams() {
+export function generateStaticParams() {
   const posts = getAllPostsMeta();
-  return posts.map((p) => ({ slug: p.slug }));
+  return posts.map((post) => ({ slug: post.slug }));
 }
 
-export async function generateMetadata({ params }: { params: Params }) {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const meta = getPostMeta(params.slug);
-  if (!meta) return {};
+  
+  if (!meta) {
+    return {
+      title: "Post Not Found",
+    };
+  }
+
   return {
     title: `${meta.title} | NxtBuck Blog`,
     description: meta.description,
   };
 }
 
-export default function BlogPostPage({ params }: { params: Params }) {
-  const filePath = path.join(BLOG_DIR, `${params.slug}.mdx`);
-  if (!fs.existsSync(filePath)) {
+export default function BlogPostPage({ params }: PageProps) {
+  const meta = getPostMeta(params.slug);
+  
+  if (!meta) {
     notFound();
   }
-
-  // MDX is compiled by Next with the MDX plugin; require to load the default export.
-  const Post = require(filePath).default;
-  const meta = getPostMeta(params.slug);
 
   return (
     <main className="max-w-3xl mx-auto px-4 py-12">
       <div className="mb-6">
-        <p className="text-xs text-white/60">
-          {meta &&
-            new Date(meta.date).toLocaleDateString("en-CA", {
+        {meta.date && (
+          <p className="text-xs text-white/60">
+            {new Date(meta.date).toLocaleDateString("en-CA", {
               year: "numeric",
               month: "short",
               day: "2-digit",
             })}
-        </p>
-        <h1 className="mt-1 text-3xl font-bold text-white">
-          {meta?.title ?? params.slug}
-        </h1>
-        {meta?.description && (
+          </p>
+        )}
+        <h1 className="mt-1 text-3xl font-bold text-white">{meta.title}</h1>
+        {meta.description && (
           <p className="text-sm text-white/60 mt-2">{meta.description}</p>
         )}
       </div>
 
-      <article className="prose prose-invert prose-p:text-white/80 prose-headings:text-white prose-a:text-[#FF4081]">
-        <Post />
+      <article className="prose prose-invert prose-lg max-w-none prose-headings:text-white prose-headings:font-bold prose-p:text-white/80 prose-p:leading-relaxed prose-a:text-[#FF4081] prose-a:no-underline hover:prose-a:underline prose-strong:text-white prose-ul:text-white/80 prose-ol:text-white/80 prose-li:text-white/80 prose-hr:border-white/20">
+        <MdxContent slug={params.slug} />
       </article>
     </main>
   );
 }
-
