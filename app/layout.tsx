@@ -3,6 +3,7 @@ import "./globals.css";
 import NxtBuckHeader from "@/components/NxtBuckHeader";
 import NxtBuckFooter from "@/components/NxtBuckFooter";
 import { GoogleTagManager } from "@next/third-parties/google";
+import RouteChangeTracker from "./components/RouteChangeTracker";
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 
@@ -41,6 +42,7 @@ export default function RootLayout({
     <html lang="en">
       <head />
       <body className="bg-[#673AB7] min-h-screen flex flex-col">
+        <RouteChangeTracker />
         <NxtBuckHeader />
         {children}
         <NxtBuckFooter />
