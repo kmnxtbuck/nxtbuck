@@ -2,7 +2,8 @@ type AnalyticsEventPayload = Record<string, unknown>;
 
 declare global {
   interface Window {
-    dataLayer?: Array<AnalyticsEventPayload>;
+    // Align with existing global declaration (Object[]).
+    dataLayer?: Object[];
   }
 }
 
