@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useEffect, useRef, useState, FormEvent } from "react";
 import Link from "next/link";
+import { trackEvent } from "@/lib/analytics";
 
 function ArrowIcon({ className }: { className?: string }) {
   return (
@@ -31,10 +32,37 @@ export default function ContactUs() {
     message: "",
   });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const formId = "contact_page_form";
+  const hasStartedRef = useRef(false);
+  const interactedFieldsRef = useRef<Set<string>>(new Set());
+
+  useEffect(() => {
+    trackEvent("form_view", { form_id: formId });
+  }, [formId]);
+
+  const handleFieldInteraction = (field: string) => {
+    if (!interactedFieldsRef.current.has(field)) {
+      interactedFieldsRef.current.add(field);
+      trackEvent("form_field_interaction", { form_id: formId, field_name: field });
+    }
+
+    if (!hasStartedRef.current) {
+      hasStartedRef.current = true;
+      trackEvent("form_start", { form_id: formId, field_name: field });
+    }
+  };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setStatus("sending");
+
+    // Fire a dataLayer event for GTM before network call
+    trackEvent("generate_lead", {
+      event_data: {
+        form_id: formId,
+      },
+    });
+    trackEvent("form_submit", { form_id: formId });
 
     try {
       const response = await fetch("/api/contact", {
@@ -57,12 +85,21 @@ export default function ContactUs() {
       if (response.ok && data.success) {
         setStatus("sent");
         setFormData({ name: "", email: "", phone: "", business: "", budget: "", message: "" });
+        trackEvent("form_complete", { form_id: formId });
       } else {
         console.error("Form submission error:", data.error);
+        trackEvent("form_error", {
+          form_id: formId,
+          error_message: data?.error || "Unknown error",
+        });
         setStatus("error");
       }
     } catch (error) {
       console.error("Form submission error:", error);
+      trackEvent("form_error", {
+        form_id: formId,
+        error_message: error instanceof Error ? error.message : "Unknown error",
+      });
       setStatus("error");
     }
   };
@@ -161,7 +198,10 @@ export default function ContactUs() {
           </button>
         </div>
       ) : (
-                <form onSubmit={handleSubmit} className="p-6 sm:p-8 rounded-2xl border border-white/20 bg-white/10 space-y-5">
+                <form
+                  onSubmit={handleSubmit}
+                  className={`p-6 sm:p-8 rounded-2xl border border-white/20 bg-white/10 space-y-5 ${formId}`}
+                >
                   <div className="grid sm:grid-cols-2 gap-4">
           <div>
                       <label htmlFor="name" className="block text-white text-sm font-medium mb-2">
@@ -172,7 +212,11 @@ export default function ContactUs() {
               id="name"
               required
               value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              onFocus={() => handleFieldInteraction("name")}
+              onChange={(e) => {
+                handleFieldInteraction("name");
+                setFormData({ ...formData, name: e.target.value });
+              }}
                         className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-[#FF4081] transition-colors text-sm"
                         placeholder="John Smith"
                       />
@@ -186,7 +230,11 @@ export default function ContactUs() {
                         id="phone"
                         required
                         value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        onFocus={() => handleFieldInteraction("phone")}
+                        onChange={(e) => {
+                          handleFieldInteraction("phone");
+                          setFormData({ ...formData, phone: e.target.value });
+                        }}
                         className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-[#FF4081] transition-colors text-sm"
                         placeholder="(416) 555-0123"
             />
@@ -202,7 +250,11 @@ export default function ContactUs() {
               id="email"
               required
               value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              onFocus={() => handleFieldInteraction("email")}
+              onChange={(e) => {
+                handleFieldInteraction("email");
+                setFormData({ ...formData, email: e.target.value });
+              }}
                       className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-[#FF4081] transition-colors text-sm"
                       placeholder="john@company.com"
             />
@@ -216,7 +268,11 @@ export default function ContactUs() {
                       <select
                         id="business"
                         value={formData.business}
-                        onChange={(e) => setFormData({ ...formData, business: e.target.value })}
+                        onFocus={() => handleFieldInteraction("business")}
+                        onChange={(e) => {
+                          handleFieldInteraction("business");
+                          setFormData({ ...formData, business: e.target.value });
+                        }}
                         className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white focus:outline-none focus:border-[#FF4081] transition-colors text-sm appearance-none"
                         style={{
                           backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
@@ -242,7 +298,11 @@ export default function ContactUs() {
                       <select
                         id="budget"
                         value={formData.budget}
-                        onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+                        onFocus={() => handleFieldInteraction("budget")}
+                        onChange={(e) => {
+                          handleFieldInteraction("budget");
+                          setFormData({ ...formData, budget: e.target.value });
+                        }}
                         className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white focus:outline-none focus:border-[#FF4081] transition-colors text-sm appearance-none"
                         style={{
                           backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
@@ -271,7 +331,11 @@ export default function ContactUs() {
               required
                       rows={4}
               value={formData.message}
-              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+              onFocus={() => handleFieldInteraction("message")}
+              onChange={(e) => {
+                handleFieldInteraction("message");
+                setFormData({ ...formData, message: e.target.value });
+              }}
                       className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-[#FF4081] transition-colors resize-none text-sm"
                       placeholder="What are you looking for? New website, redesign, or something else?"
             />
