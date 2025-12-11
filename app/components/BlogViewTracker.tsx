@@ -13,9 +13,11 @@ export default function BlogViewTracker({ slug, title }: BlogViewTrackerProps) {
 
   useEffect(() => {
     trackEvent("view_content", {
-      content_type: "blog_post",
-      content_id: slug,
-      content_title: title,
+        event_data: {
+            content_type: "blog_post",
+            content_id: slug,
+            content_title: title,
+        },
     });
   }, [slug, title]);
 
@@ -29,9 +31,11 @@ export default function BlogViewTracker({ slug, title }: BlogViewTrackerProps) {
       if (scrollPercentage >= 0.5) {
         hasTrackedScroll50.current = true;
         trackEvent("scroll_50", {
-          content_type: "blog_post",
-          content_id: slug,
-          content_title: title,
+            event_data: {
+                content_type: "blog_post",
+                content_id: slug,
+                content_title: title,
+            },
         });
       }
     };
