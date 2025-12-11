@@ -8,7 +8,7 @@ const packages = [
     id: 1,
     name: "Performance Website",
     subtitle: "Entry-Level",
-    price: "$2,500-$3,500",
+    price: "$2,499-$3,499",
     priceType: "one-time",
     target: "Toronto small businesses, GTA contractors, local trades, consultants",
     promise:
@@ -30,7 +30,7 @@ const packages = [
     id: 2,
     name: "Growth Engine Website",
     subtitle: "Core Package",
-    price: "$6,000-$8,500",
+    price: "$5,999-$8,499",
     priceType: "one-time",
     target: "Growing Ontario businesses ready to scale their online presence",
     promise:
@@ -54,9 +54,9 @@ const packages = [
     id: 3,
     name: "Fully Managed Revenue Site",
     subtitle: "Recurring Profit Engine",
-    price: "$1,500-$2,500",
+    price: "$1,499-$2,499",
     priceType: "/month",
-    setupFee: "$3,000 setup fee - 12-month contract",
+    setupFee: "$2,999 setup fee - 12-month contract",
     target:
       "Toronto realtors, GTA home services, Ontario franchises, high-ticket service companies",
     promise:
