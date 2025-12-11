@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import MdxContent from "@/components/MdxContent";
+import BlogViewTracker from "@/components/BlogViewTracker";
 import { getAllPostsMeta, getPostMeta } from "@/lib/blog";
 
 type PageProps = {
@@ -38,6 +39,7 @@ export default function BlogPostPage({ params }: PageProps) {
 
   return (
     <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12 w-full overflow-x-hidden">
+      <BlogViewTracker slug={params.slug} title={meta.title} />
       <div className="mb-6 sm:mb-8">
         {meta.date && (
           <p className="text-xs text-white/60">
