@@ -32,7 +32,7 @@ const packages = [
     subtitle: "Core Package",
     price: "$5,999-$8,499",
     priceType: "one-time",
-    target: "Growing Ontario businesses ready to scale their online presence",
+    target: "Growing businesses ready to scale their online presence",
     promise:
       "A complete revenue engine (not just a website) that converts, follows up, and books calls for you.",
     features: [
@@ -58,7 +58,7 @@ const packages = [
     priceType: "/month",
     setupFee: "$2,999 setup fee - 12-month contract",
     target:
-      "Toronto realtors, GTA home services, Ontario franchises, high-ticket service companies",
+      "Realtors, home services, franchises, high-ticket service companies",
     promise:
       "We don't just build your website (we run it like a revenue-producing machine).",
     features: [
@@ -149,7 +149,7 @@ export default function OurProducts() {
 
           <p className="text-base sm:text-lg md:text-xl text-white/60 max-w-2xl mx-auto leading-relaxed px-4">
             Choose the package that matches your ambition. Every solution is
-            built to convert Toronto and Ontario visitors into loyal customers.
+            built to convert visitors into loyal customers.
           </p>
         </div>
 
@@ -299,7 +299,7 @@ export default function OurProducts() {
             </h2>
             <p className="text-white/60 text-base sm:text-lg mb-6 sm:mb-8 md:mb-10 leading-relaxed">
               Book a free 30-minute strategy call with our Toronto team. We'll analyze your current
-              situation and recommend the perfect solution for your Ontario business
+              situation and recommend the perfect solution for your business
               goals.
         </p>
             <Link
