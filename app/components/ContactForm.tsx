@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 import { trackEvent } from "@/lib/analytics";
 import useUtmPersistence from "@/lib/useUtmPersistence";
 import ArrowIcon from "@/components/ArrowIcon";

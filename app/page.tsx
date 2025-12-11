@@ -106,7 +106,7 @@ export default function Home() {
             {/* Subheadline */}
             <p className="text-base sm:text-lg md:text-xl text-white/70 max-w-2xl mb-6 sm:mb-8 leading-relaxed">
               We build high-converting websites for contractors, clinics, law
-              firms, and service businesses across Toronto, the GTA, and Ontario.
+              firms, and service businesses across USA & Canada.
               Get a site that actually brings in leads - delivered in 14 days.
             </p>
 

@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "About Us | Toronto Web Design Agency",
   description:
-    "NxtBuck Inc. is a Toronto-based web design agency specializing in high-converting websites for service businesses across Ontario and Canada. Learn about our mission.",
+    "NxtBuck Inc. is a Toronto-based web design agency specializing in high-converting websites for service businesses across USA & Canada. Learn about our mission.",
   keywords: [
     "Toronto web design company",
     "Ontario web agency",
@@ -99,7 +99,7 @@ export default function AboutUs() {
 
           <p className="text-base sm:text-lg md:text-xl text-white/70 max-w-3xl mx-auto mb-8 leading-relaxed">
             Based in Toronto, we build websites that generate leads, 
-            book appointments, and grow businesses across Ontario and Canada. 
+            book appointments, and grow businesses across USA & Canada. 
             Most agencies build pretty websites. We build ones that actually work.
           </p>
         </div>

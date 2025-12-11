@@ -42,7 +42,7 @@ export default function ContactUs() {
                 </h2>
                 <p className="text-white/70 text-sm sm:text-base mb-6">
                   Based in Toronto, Ontario, we work with service businesses across 
-                  the Greater Toronto Area and all of Canada.
+                  USA & Canada.
                 </p>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">

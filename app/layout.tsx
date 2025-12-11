@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     template: "%s | NxtBuck Inc. Toronto",
   },
   description:
-    "Toronto's leading web design agency for service businesses. We build high-converting websites for contractors, clinics, and local businesses across Ontario and Canada. Get your site in 14 days.",
+    "Toronto's leading web design agency for service businesses. We build high-converting websites for contractors, clinics, and local businesses across USA & Canada. Get your site in 14 days.",
   keywords: [
     "web design Toronto",
     "website design Ontario",

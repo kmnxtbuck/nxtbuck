@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Terms of Service | NxtBuck Inc. Toronto",
   description:
-    "Terms of Service for NxtBuck Inc., a Toronto-based web design agency serving businesses across Ontario and Canada.",
+    "Terms of Service for NxtBuck Inc., a Toronto-based web design agency serving businesses across USA & Canada.",
 };
 
 export default function TermsOfService() {
