@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact Us | Toronto Web Design Agency",
+  title: "Contact Us | Web Design Agency",
   description:
-    "Get a free quote for your website project. NxtBuck Inc. serves Toronto, the GTA, Ontario, and businesses across Canada. Contact us today for a consultation.",
+    "Get a free quote for your website project. NxtBuck Inc. serves businesses across USA & Canada. Contact us today for a consultation.",
   keywords: [
     "contact web designer Toronto",
     "Toronto web design quote",

@@ -10,7 +10,7 @@ const packages = [
     subtitle: "Entry-Level",
     price: "$2,499-$3,499",
     priceType: "one-time",
-    target: "Toronto small businesses, GTA contractors, local trades, consultants",
+    target: "Small businesses, contractors, local trades, consultants",
     promise:
       "A premium small-business website built to convert visitors into leads.",
     features: [
@@ -298,7 +298,7 @@ export default function OurProducts() {
               Not sure which package is right for you?
             </h2>
             <p className="text-white/60 text-base sm:text-lg mb-6 sm:mb-8 md:mb-10 leading-relaxed">
-              Book a free 30-minute strategy call with our Toronto team. We'll analyze your current
+              Book a free 30-minute strategy call with our team. We'll analyze your current
               situation and recommend the perfect solution for your business
               goals.
         </p>

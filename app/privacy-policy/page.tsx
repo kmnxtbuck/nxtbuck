@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | NxtBuck Inc. Toronto",
+  title: "Privacy Policy | NxtBuck Inc. | Toronto",
   description:
     "Privacy Policy for NxtBuck Inc., a Toronto-based web design agency. Learn how we protect your data and privacy.",
 };

@@ -324,16 +324,16 @@ export default function ContactForm() {
               Select budget (optional)
             </option>
             <option value="under-2500" className="bg-[#1a1a2e]">
-              Under $2,500
+              Under $2,499
             </option>
             <option value="2500-5000" className="bg-[#1a1a2e]">
-              $2,500 - $5,000
+              $2,499 - $4,999
             </option>
             <option value="5000-10000" className="bg-[#1a1a2e]">
-              $5,000 - $10,000
+              $4,999 - $9,999
             </option>
             <option value="10000-plus" className="bg-[#1a1a2e]">
-              $10,000+
+              $9,999+
             </option>
             <option value="monthly" className="bg-[#1a1a2e]">
               Monthly retainer

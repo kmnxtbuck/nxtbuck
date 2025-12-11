@@ -71,12 +71,12 @@ export default function ContactUs() {
 
               <div className="p-6 sm:p-8 rounded-2xl border border-white/10 bg-white/5">
                 <h3 className="text-lg font-bold text-white mb-3">
-                  Why Toronto Businesses Choose Us
+                  Why Businesses Choose Us
                 </h3>
                 <ul className="space-y-2 text-white/70 text-sm">
-                  <li>✓ Local team that understands the Ontario market</li>
-                  <li>✓ Fast 14-day delivery for GTA businesses</li>
-                  <li>✓ SEO optimized for Toronto & Canadian search</li>
+                  <li>✓ Local team that understands your market</li>
+                  <li>✓ Fast 14-day delivery</li>
+                  <li>✓ SEO optimized for local search</li>
                   <li>✓ Ongoing support in your timezone</li>
                 </ul>
               </div>
