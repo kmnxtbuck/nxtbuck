@@ -41,7 +41,7 @@ export default function ContactUs() {
                   Serving Toronto & Beyond
                 </h2>
                 <p className="text-white/70 text-sm sm:text-base mb-6">
-                  Based in Toronto, Ontario, we work with service businesses across 
+                  Based in Toronto, Ontario, we work with service businesses and e-commerce retailers across 
                   USA & Canada.
                 </p>
                 <div className="space-y-4">

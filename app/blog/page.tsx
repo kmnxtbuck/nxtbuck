@@ -14,7 +14,7 @@ export default function BlogIndexPage() {
       <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-4 sm:mb-6 text-white">NxtBuck Blog</h1>
       <p className="text-sm text-white/60 mb-6 sm:mb-8">
         Essays and breakdowns on building efficient, automated systems for small
-        businesses.
+        businesses and e-commerce retailers.
       </p>
 
       <div className="space-y-6">

@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Web Design | High-Converting Websites for Service Businesses",
+  title: "Web Design | High-Converting Websites for Service Businesses & E-commerce Retailers",
   description:
-    "Top web design agency for contractors, clinics, law firms & service businesses. Custom websites that generate leads, delivered in 14 days. Serving USA & Canada.",
+    "Top web design agency for contractors, clinics, law firms, e-commerce retailers & service businesses. Custom websites that generate leads and sales, delivered in 14 days. Serving USA & Canada.",
   keywords: [
     "web design Toronto",
     "Toronto web agency",
@@ -91,7 +91,7 @@ export default function Home() {
             <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 mb-6 sm:mb-8 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-[#FF4081] animate-pulse"></span>
               <span className="text-white/80 text-xs sm:text-sm font-medium">
-                Web Design Agency for Service Businesses
+                Web Design Agency for Service Businesses & E-commerce Retailers
               </span>
             </div>
 
@@ -106,7 +106,7 @@ export default function Home() {
             {/* Subheadline */}
             <p className="text-base sm:text-lg md:text-xl text-white/70 max-w-2xl mb-6 sm:mb-8 leading-relaxed">
               We build high-converting websites for contractors, clinics, law
-              firms, and service businesses across USA & Canada.
+              firms, e-commerce retailers, and service businesses across USA & Canada.
               Get a site that actually brings in leads - delivered in 14 days.
             </p>
 

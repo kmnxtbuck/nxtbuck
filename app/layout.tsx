@@ -9,11 +9,11 @@ const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 
 export const metadata: Metadata = {
   title: {
-    default: "NxtBuck Inc. | Web Design | Websites for Service Businesses",
+    default: "NxtBuck Inc. | Web Design | Websites for Service Businesses & E-commerce Retailers",
     template: "%s | NxtBuck Inc. Toronto",
   },
   description:
-    "Leading web design agency for service businesses. We build high-converting websites for contractors, clinics, and local businesses across USA & Canada. Get your site in 14 days.",
+    "Leading web design agency for service businesses and e-commerce retailers. We build high-converting websites for contractors, clinics, online stores, and local businesses across USA & Canada. Get your site in 14 days.",
   keywords: [
     "web design Toronto",
     "website design Ontario",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "NxtBuck Inc. | Web Design",
     description:
-      "Leading web design agency for service businesses. High-converting websites delivered in 14 days.",
+      "Leading web design agency for service businesses and e-commerce retailers. High-converting websites delivered in 14 days.",
     locale: "en_CA",
     type: "website",
   },

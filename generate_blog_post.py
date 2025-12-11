@@ -87,7 +87,7 @@ def pick_topic(topics):
 
 def build_prompt(topic: str, today_str: str):
     return f"""
-You are a technical blogger writing for NxtBuck, a web development agency serving small businesses across USA & Canada.
+You are a technical blogger writing for NxtBuck, a web development agency serving small businesses and e-commerce retailers across USA & Canada.
 
 Write a blog post about: "{topic}"
 
@@ -105,7 +105,7 @@ Requirements:
     }},
   }};
 
-- Audience: Small business owners across USA & Canada who need websites
+- Audience: Small business owners and e-commerce retailers across USA & Canada who need websites
 - Tone: Clear, practical, helpful, and professional
 - Length: ~1200-1500 words
 - Include:
@@ -116,7 +116,7 @@ Requirements:
   * Code examples if relevant (use markdown code blocks)
   * A call-to-action section at the end (after a horizontal rule ---) encouraging readers to contact NxtBuck
   * The CTA must include a clickable link to the contact form: [Get your free custom homepage mockup →](/contact-us) or similar engaging text
-  * End with a location tagline: "*Based in Toronto, serving service businesses across USA & Canada.*"
+  * End with a location tagline: "*Based in Toronto, serving service businesses and e-commerce retailers across USA & Canada.*"
 - Style: Write as if you're a knowledgeable web developer helping small business owners understand web development concepts, pricing, or best practices
 - Context: Reference USA and Canadian business context when relevant
 - Use hyphens (-) instead of em dashes (—) throughout

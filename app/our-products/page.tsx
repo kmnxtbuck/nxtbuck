@@ -10,7 +10,7 @@ const packages = [
     subtitle: "Entry-Level",
     price: "$2,499-$3,499",
     priceType: "one-time",
-    target: "Small businesses, contractors, local trades, consultants",
+    target: "Small businesses, e-commerce retailers, contractors, local trades, consultants",
     promise:
       "A premium small-business website built to convert visitors into leads.",
     features: [
