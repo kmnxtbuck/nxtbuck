@@ -55,22 +55,17 @@ class AnalyticsEventEmitter {
   }
 }
 
-// Singleton instance
-let eventEmitterInstance: AnalyticsEventEmitter | null = null;
-
 export function getEventEmitter(): AnalyticsEventEmitter {
   if (typeof window !== "undefined") {
-    // Client-side: attach to window for persistence
+    // Client-side: attach to window for persistence across page navigations
     if (!(window as any).__analyticsEventEmitter) {
       (window as any).__analyticsEventEmitter = new AnalyticsEventEmitter();
     }
     return (window as any).__analyticsEventEmitter;
   }
 
-  // Server-side: create new instance per request
-  if (!eventEmitterInstance) {
-    eventEmitterInstance = new AnalyticsEventEmitter();
-  }
-  return eventEmitterInstance;
+  // Server-side: create new instance per request to avoid observer accumulation
+  // and cross-request data pollution
+  return new AnalyticsEventEmitter();
 }
 
