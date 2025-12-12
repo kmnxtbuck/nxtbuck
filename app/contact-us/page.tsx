@@ -56,7 +56,7 @@ export default function ContactUs() {
                     <span className="text-xl">📧</span>
                     <div>
                       <p className="text-white font-medium">Email</p>
-                      <p className="text-white/60 text-sm">karan@nxtbuck.com</p>
+                      <p className="text-white/60 text-sm">hello@nxtbuck.com</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
