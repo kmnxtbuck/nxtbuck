@@ -23,7 +23,7 @@ STATE_FILE = REPO_DIR / ".topic_state.json"
 AUTHOR_NAME = "Karan Mirani"
 AUTHOR_EMAIL = "karan@nxtbuck.com"
 
-OPENAI_MODEL = "gpt-5.1-2025-11-13"
+OPENAI_MODEL = "gpt-5.2-2025-12-11"
 
 # --------------------------------
 
