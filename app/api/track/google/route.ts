@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
 
     // Extract user data from params
     const eventData = params.event_data || {};
-    const userData = params.user_data || {};
+    const userData = eventData.user_data || {};
 
     // Get client IP and user agent
     const ipAddress =
