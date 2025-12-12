@@ -3,6 +3,7 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
+import { createHash } from "crypto";
 
 const GOOGLE_CONVERSION_ID = process.env.GOOGLE_CONVERSION_ID;
 const GOOGLE_CONVERSION_LABEL = process.env.GOOGLE_CONVERSION_LABEL;
@@ -10,7 +11,7 @@ const GOOGLE_ACCESS_TOKEN = process.env.GOOGLE_ACCESS_TOKEN;
 
 export async function POST(request: NextRequest) {
   try {
-    if (!GOOGLE_CONVERSION_ID || !GOOGLE_ACCESS_TOKEN) {
+    if (!GOOGLE_CONVERSION_ID || !GOOGLE_CONVERSION_LABEL || !GOOGLE_ACCESS_TOKEN) {
       console.warn("Google Conversions API not configured");
       return NextResponse.json({ success: false, error: "Not configured" }, { status: 200 });
     }
@@ -97,15 +98,21 @@ export async function POST(request: NextRequest) {
 }
 
 // Hash functions for PII (required by Google)
+// Normalize and SHA-256 hash for privacy compliance
+function sha256(input: string): string {
+  return createHash("sha256").update(input).digest("hex");
+}
+
 function hashEmail(email: string): string {
-  // In production, use SHA-256 hashing
+  // Normalize: lowercase and trim, then SHA-256 hash
   // Google requires normalized (lowercase, trimmed) and hashed emails
-  return email.toLowerCase().trim();
+  const normalized = email.toLowerCase().trim();
+  return sha256(normalized);
 }
 
 function hashPhone(phone: string): string {
-  // Remove all non-digit characters and ensure E.164 format
-  const digits = phone.replace(/\D/g, "");
-  return digits;
+  // Normalize: remove all non-digit characters, then SHA-256 hash
+  const normalized = phone.replace(/\D/g, "");
+  return sha256(normalized);
 }
 

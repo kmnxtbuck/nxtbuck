@@ -3,6 +3,7 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
+import { createHash } from "crypto";
 
 const REDDIT_PIXEL_ID = process.env.REDDIT_PIXEL_ID;
 const REDDIT_ACCESS_TOKEN = process.env.REDDIT_ACCESS_TOKEN;
@@ -92,13 +93,20 @@ export async function POST(request: NextRequest) {
 }
 
 // Hash functions for PII (required by Reddit)
+// Normalize and SHA-256 hash for privacy compliance
+function sha256(input: string): string {
+  return createHash("sha256").update(input).digest("hex");
+}
+
 function hashEmail(email: string): string {
-  // In production, use SHA-256 hashing
-  return email.toLowerCase().trim();
+  // Normalize: lowercase and trim, then SHA-256 hash
+  const normalized = email.toLowerCase().trim();
+  return sha256(normalized);
 }
 
 function hashPhone(phone: string): string {
-  // Remove all non-digit characters
-  return phone.replace(/\D/g, "");
+  // Normalize: remove all non-digit characters, then SHA-256 hash
+  const normalized = phone.replace(/\D/g, "");
+  return sha256(normalized);
 }
 
