@@ -3,6 +3,7 @@
 
 import { usePathname, useSearchParams } from 'next/navigation'
 import { useEffect, useRef, Suspense } from 'react'
+import { trackEvent } from '@/lib/analytics'
 
 function RouteChangeTrackerLogic() {
   const pathname = usePathname()
@@ -16,13 +17,11 @@ function RouteChangeTrackerLogic() {
       return 
     }
 
-    if (typeof window !== 'undefined' && window.dataLayer) {
-      window.dataLayer.push({
-        event: 'page_view',
-        page_path: pathname,
-        page_title: document.title
-      })
-    }
+    // Use observer pattern for page_view tracking
+    trackEvent('page_view', {
+      page_path: pathname,
+      page_title: typeof document !== 'undefined' ? document.title : '',
+    })
   }, [pathname, searchParams])
 
   return null
