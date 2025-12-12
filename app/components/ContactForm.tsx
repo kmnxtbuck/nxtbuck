@@ -35,8 +35,8 @@ export default function ContactForm() {
       interactedFieldsRef.current.add(field);
       trackEvent("form_field_interaction", {
         event_data: {
-          form_id: formId,
-          form_field: field,
+        form_id: formId,
+        form_field: field,
           ...utmPayload,
         },
       });
@@ -141,8 +141,8 @@ export default function ContactForm() {
         console.error("Form submission error:", data.error);
         trackEvent("form_error", {
           event_data: {
-            form_id: formId,
-            error_message: data?.error || "Unknown error",
+          form_id: formId,
+          error_message: data?.error || "Unknown error",
             ...utmPayload,
           },
         });
@@ -152,8 +152,8 @@ export default function ContactForm() {
       console.error("Form submission error:", error);
       trackEvent("form_error", {
         event_data: {
-          form_id: formId,
-          error_message: error instanceof Error ? error.message : "Unknown error",
+        form_id: formId,
+        error_message: error instanceof Error ? error.message : "Unknown error",
           ...utmPayload,
         },
       });
