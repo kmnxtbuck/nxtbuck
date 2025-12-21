@@ -32,6 +32,19 @@
   }
 }
 
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.002);
+  }
+}
+
+.breathe {
+  animation: breathe 1.2s ease-in-out infinite;
+}
+
 /* Blog post mobile responsiveness */
 .prose pre {
   @apply overflow-x-auto;

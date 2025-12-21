@@ -167,14 +167,14 @@ export default function ComparisonPage() {
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-6 sm:mb-8">
             <Link
               href="/contact-us"
-              className="inline-flex items-center justify-center gap-2 px-8 sm:px-10 py-4 sm:py-5 rounded-xl bg-white text-[#673AB7] font-bold text-base sm:text-lg hover:bg-white/90 transition-all duration-300 shadow-2xl shadow-white/20 hover:shadow-white/30 active:scale-[0.98] sm:hover:scale-[1.02]"
+              className="inline-flex items-center justify-center gap-2 px-8 sm:px-10 py-4 sm:py-5 rounded-xl bg-white text-[#673AB7] font-bold text-base sm:text-lg hover:bg-cyan-400 hover:text-white transition-all duration-300 shadow-2xl shadow-white/20 hover:shadow-cyan-400/40 active:scale-[0.98] sm:hover:scale-[1.02]"
             >
               Get My Free 5-Minute Teardown
               <ArrowIcon className="w-4 h-4 sm:w-5 sm:h-5" />
             </Link>
             <Link
               href="/our-products"
-              className="inline-flex items-center justify-center gap-2 px-8 sm:px-10 py-4 sm:py-5 rounded-xl border-2 border-white/30 text-white font-bold text-base sm:text-lg hover:bg-white/10 hover:border-white/50 transition-all duration-300"
+              className="inline-flex items-center justify-center gap-2 px-8 sm:px-10 py-4 sm:py-5 rounded-xl border-2 border-white/30 text-white font-bold text-base sm:text-lg hover:bg-cyan-400/20 hover:border-cyan-400/60 hover:text-cyan-300 transition-all duration-300"
             >
               See Pricing & How It Works
             </Link>

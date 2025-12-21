@@ -275,8 +275,8 @@ export default function OurProducts() {
                   href="/contact-us"
                   className={`w-full flex items-center justify-center gap-2 py-3 sm:py-4 px-4 sm:px-6 rounded-lg sm:rounded-xl font-bold text-sm sm:text-base transition-all duration-300 active:scale-[0.98] ${
                     pkg.popular
-                      ? "bg-gradient-to-r from-[#FF4081] to-[#E040FB] text-white shadow-lg shadow-[#FF4081]/25 hover:shadow-[#FF4081]/40 sm:hover:scale-[1.02]"
-                      : "bg-white/10 text-white hover:bg-white/20 border border-white/10 hover:border-white/20"
+                      ? "bg-gradient-to-r from-[#FF4081] to-[#E040FB] text-white shadow-lg shadow-[#FF4081]/25 hover:bg-cyan-400 hover:shadow-cyan-400/40 sm:hover:scale-[1.02]"
+                      : "bg-white/10 text-white hover:bg-cyan-400/20 border border-white/10 hover:border-cyan-400/60 hover:text-cyan-300"
                   }`}
                 >
                   Get Started
@@ -304,7 +304,7 @@ export default function OurProducts() {
         </p>
             <Link
               href="/contact-us"
-              className="inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl bg-white text-[#0a0a0a] font-bold text-sm sm:text-base hover:bg-white/90 transition-all duration-300 shadow-2xl shadow-white/10 hover:shadow-white/20 active:scale-[0.98] sm:hover:scale-[1.02]"
+              className="inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl bg-white text-[#0a0a0a] font-bold text-sm sm:text-base hover:bg-cyan-400 hover:text-white transition-all duration-300 shadow-2xl shadow-white/10 hover:shadow-cyan-400/40 active:scale-[0.98] sm:hover:scale-[1.02]"
             >
               Schedule Your Free Consultation
               <ArrowIcon className="w-4 h-4 sm:w-5 sm:h-5" />

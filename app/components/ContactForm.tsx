@@ -371,7 +371,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-xl bg-white text-[#673AB7] font-bold text-base hover:bg-white/90 disabled:bg-white/50 transition-all duration-300 active:scale-[0.98]"
+        className="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-xl bg-white text-[#673AB7] font-bold text-base hover:bg-cyan-400 hover:text-white disabled:bg-white/50 transition-all duration-300 active:scale-[0.98] hover:shadow-cyan-400/40"
       >
         {status === "sending" ? "Sending..." : "Get My Free Quote"}
         {status !== "sending" && <ArrowIcon className="w-5 h-5" />}

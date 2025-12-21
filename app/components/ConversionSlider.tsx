@@ -566,7 +566,7 @@ export default function ConversionSlider() {
                     goal: selectedGoal,
                   })
                 }
-                className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl bg-white text-[#673AB7] text-xs sm:text-sm font-semibold hover:bg-white/95 active:scale-[0.98] transition-all shadow-lg shadow-white/20"
+                className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl bg-white text-[#673AB7] text-xs sm:text-sm font-semibold hover:bg-cyan-400 hover:text-white active:scale-[0.98] transition-all shadow-lg shadow-white/20 hover:shadow-cyan-400/40"
               >
                 Get my free 5‑minute teardown
               </button>

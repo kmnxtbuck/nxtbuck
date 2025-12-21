@@ -114,14 +114,14 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8 sm:mb-12">
               <Link
                 href="/contact-us"
-                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-white text-[#673AB7] font-bold text-base sm:text-lg hover:bg-white/90 transition-all duration-300 shadow-2xl shadow-white/20 hover:shadow-white/30 active:scale-[0.98] sm:hover:scale-[1.02]"
+                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-white text-[#673AB7] font-bold text-base sm:text-lg hover:bg-cyan-400 hover:text-white transition-all duration-300 shadow-2xl shadow-white/20 hover:shadow-cyan-400/40 active:scale-[0.98] sm:hover:scale-[1.01]"
               >
                 Get a Free Quote
                 <ArrowIcon className="w-4 h-4 sm:w-5 sm:h-5" />
               </Link>
               <Link
                 href="/our-products"
-                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl border-2 border-white/30 text-white font-bold text-base sm:text-lg hover:bg-white/10 hover:border-white/50 transition-all duration-300"
+                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl border-2 border-white/30 text-white font-bold text-base sm:text-lg hover:bg-cyan-400/20 hover:border-cyan-400/60 hover:text-cyan-300 transition-all duration-300"
               >
                 View Our Packages
               </Link>
@@ -130,15 +130,15 @@ export default function Home() {
             {/* Trust Indicators */}
             <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-3 sm:gap-6 text-xs sm:text-sm text-white/60">
               <div className="flex items-center gap-2">
-                <CheckIcon className="w-4 h-4 sm:w-5 sm:h-5 text-[#FF4081] flex-shrink-0" />
+                <CheckIcon className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400 flex-shrink-0" />
                 <span>No templates - 100% custom</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckIcon className="w-4 h-4 sm:w-5 sm:h-5 text-[#FF4081] flex-shrink-0" />
+                <CheckIcon className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400 flex-shrink-0" />
                 <span>14-day delivery</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckIcon className="w-4 h-4 sm:w-5 sm:h-5 text-[#FF4081] flex-shrink-0" />
+                <CheckIcon className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400 flex-shrink-0" />
                 <span>Money-back guarantee</span>
               </div>
             </div>
@@ -151,7 +151,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center">
             {stats.map((stat, index) => (
-              <div key={index}>
+              <div key={index} className="breathe p-4 sm:p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm hover:scale-105 hover:shadow-lg hover:shadow-[#ffe577]/20 hover:-translate-y-1 transition-all duration-300 hover:border-[#ffe577]/40 hover:bg-[#ffe577]/5">
                 <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-1 sm:mb-2">
                   {stat.value}
                 </div>
@@ -168,7 +168,7 @@ export default function Home() {
           <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12 md:mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
               Your website should be your{" "}
-              <span className="text-[#FF4081]">best salesperson.</span>
+              <span className="bg-gradient-to-r from-emerald-400 to-green-400 bg-clip-text text-transparent">best salesperson.</span>
             </h2>
             <p className="text-base sm:text-lg text-white/70 leading-relaxed">
               Most service business websites look the same, say nothing
@@ -198,12 +198,12 @@ export default function Home() {
             ].map((item, index) => (
               <div
               key={index}
-                className="p-5 sm:p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm hover:border-[#FF4081]/30 transition-colors"
+                className="breathe p-5 sm:p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm hover:scale-105 hover:shadow-lg hover:shadow-[#ffe577]/25 hover:-translate-y-1 hover:border-[#ffe577]/40 hover:bg-[#ffe577]/5 transition-all duration-300"
               >
-                <div className="text-[#FF4081] font-semibold mb-2 text-sm sm:text-base">
+                <div className="text-red-400 font-semibold mb-2 text-sm sm:text-base">
                   ✕ {item.problem}
                 </div>
-                <div className="text-white/80 text-xs sm:text-sm">✓ {item.solution}</div>
+                <div className="text-emerald-300 text-xs sm:text-sm">✓ {item.solution}</div>
               </div>
             ))}
           </div>
@@ -225,7 +225,7 @@ export default function Home() {
             </div>
             <Link
               href="/our-products"
-              className="text-[#FF4081] font-semibold hover:text-[#E040FB] transition-colors whitespace-nowrap text-sm sm:text-base"
+              className="text-slate-300 font-semibold hover:text-slate-100 transition-colors whitespace-nowrap text-sm sm:text-base"
             >
               See all packages →
             </Link>
@@ -235,9 +235,9 @@ export default function Home() {
             {services.map((service, index) => (
               <div
                 key={index}
-                className="group p-5 sm:p-6 rounded-2xl border border-white/20 bg-white/10 hover:border-[#FF4081]/50 hover:bg-white/15 transition-all duration-300"
+                className="breathe group p-5 sm:p-6 rounded-2xl border border-white/20 bg-white/10 hover:scale-105 hover:shadow-lg hover:shadow-[#ffe577]/25 hover:-translate-y-1 hover:border-[#ffe577]/40 hover:bg-[#ffe577]/5 transition-all duration-300"
               >
-                <div className="text-xs font-bold text-[#FF4081] mb-2 sm:mb-3">
+                <div className="text-xs font-bold bg-gradient-to-r from-emerald-400 to-green-400 bg-clip-text text-transparent mb-2 sm:mb-3">
                   {service.price}
                 </div>
                 <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">
@@ -248,7 +248,7 @@ export default function Home() {
                 </p>
                 <Link
                   href="/our-products"
-                  className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-white/70 group-hover:text-[#FF4081] transition-colors"
+                  className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-white/70 group-hover:text-[#ffe577] transition-colors"
                 >
                   Learn more
                   <ArrowIcon className="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
@@ -301,9 +301,9 @@ export default function Home() {
             ].map((item, index) => (
               <div
                 key={index}
-                className="group p-5 sm:p-6 rounded-2xl border border-white/20 bg-white/10 hover:border-[#FF4081]/50 hover:bg-white/15 transition-all duration-300"
+                className="breathe group p-5 sm:p-6 rounded-2xl border border-white/20 bg-white/10 hover:scale-105 hover:shadow-lg hover:shadow-[#ffe577]/25 hover:-translate-y-1 hover:border-[#ffe577]/40 hover:bg-[#ffe577]/5 transition-all duration-300"
               >
-                <div className="text-xs font-bold text-[#FF4081] mb-2 sm:mb-3">
+                <div className="text-xs font-bold text-sky-400 mb-2 sm:mb-3">
                   Step {item.step}
                 </div>
                 <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">
@@ -324,7 +324,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
             Ready to turn your website into a{" "}
-            <span className="bg-gradient-to-r from-[#FF4081] to-[#E040FB] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-emerald-400 to-green-400 bg-clip-text text-transparent">
               lead machine?
             </span>
           </h2>
@@ -335,7 +335,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
             <Link
               href="/contact-us"
-              className="inline-flex items-center justify-center gap-2 px-8 sm:px-10 py-4 sm:py-5 rounded-xl bg-white text-[#673AB7] font-bold text-base sm:text-lg hover:bg-white/90 transition-all duration-300 shadow-2xl shadow-white/20 hover:shadow-white/30 active:scale-[0.98] sm:hover:scale-[1.02]"
+              className="inline-flex items-center justify-center gap-2 px-8 sm:px-10 py-4 sm:py-5 rounded-xl bg-white text-[#673AB7] font-bold text-base sm:text-lg hover:bg-cyan-400 hover:text-white transition-all duration-300 shadow-2xl shadow-white/20 hover:shadow-cyan-400/40 active:scale-[0.98] sm:hover:scale-[1.02]"
             >
               Get Your Free Strategy Call
               <ArrowIcon className="w-4 h-4 sm:w-5 sm:h-5" />
