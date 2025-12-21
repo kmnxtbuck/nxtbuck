@@ -137,7 +137,7 @@ export default function ComparisonPage() {
             ].map((item, index) => (
               <div
                 key={index}
-                className="p-5 sm:p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm hover:border-[#FF4081]/30 transition-colors"
+                className="p-5 sm:p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm hover:border-[#ffe577]/40 hover:bg-[#ffe577]/5 hover:shadow-[#ffe577]/20 transition-all duration-300"
               >
                 <div className="text-3xl mb-3">{item.icon}</div>
                 <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">

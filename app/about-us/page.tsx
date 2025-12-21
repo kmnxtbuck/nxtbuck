@@ -185,7 +185,7 @@ export default function AboutUs() {
             {values.map((value, index) => (
               <div
                 key={index}
-                className="group p-5 sm:p-6 rounded-2xl border border-white/20 bg-white/10 hover:border-[#FF4081]/50 hover:bg-white/15 transition-all duration-300"
+                className="group p-5 sm:p-6 rounded-2xl border border-white/20 bg-white/10 hover:border-[#ffe577]/40 hover:bg-[#ffe577]/5 hover:shadow-[#ffe577]/20 transition-all duration-300"
               >
                 <span className="text-2xl sm:text-3xl mb-3 sm:mb-4 block">{value.icon}</span>
                 <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">
