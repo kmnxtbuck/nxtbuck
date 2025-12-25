@@ -30,13 +30,14 @@ export function getAllPostsMeta(): BlogPostMeta[] {
       try {
         // Simple extraction - in production you might want a more robust parser
         const metaStr = metaMatch[1];
-        const titleMatch = metaStr.match(/title:\s*["']([^"']+)["']/);
-        const descMatch = metaStr.match(/description:\s*["']([^"']+)["']/);
-        const dateMatch = metaStr.match(/date:\s*["']([^"']+)["']/);
+        // Handle double-quoted strings (allows apostrophes inside)
+        const titleMatch = metaStr.match(/title:\s*"([^"]+)"|title:\s*'([^']+)'/);
+        const descMatch = metaStr.match(/description:\s*"([^"]+)"|description:\s*'([^']+)'/);
+        const dateMatch = metaStr.match(/date:\s*"([^"]+)"|date:\s*'([^']+)'/);
         
-        if (titleMatch) meta.title = titleMatch[1];
-        if (descMatch) meta.description = descMatch[1];
-        if (dateMatch) meta.date = dateMatch[1];
+        if (titleMatch) meta.title = titleMatch[1] || titleMatch[2];
+        if (descMatch) meta.description = descMatch[1] || descMatch[2];
+        if (dateMatch) meta.date = dateMatch[1] || dateMatch[2];
       } catch {
         // ignore parsing errors
       }
